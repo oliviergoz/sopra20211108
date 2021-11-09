@@ -5,46 +5,26 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import formationJpa.dao.DaoFormation;
+import formationJpa.dao.DaoFormationFactory;
 import formationJpa.entity.Formation;
 import formationJpa.util.Context;
 
 public class AppTest {
 	public static void main(String[] args) {
-		System.out.println(Context.getInstance().getEntityManagerFactory());
+		DaoFormation daoFormation = DaoFormationFactory.getInstance();
 
-		// insert en base
-		// em.persist(<entity>);
+		Formation f = new Formation();
+		f.setId(10L);
+		f.setNom("java");
+		daoFormation.insert(f);
 
-		// "update"
-		// em.merge(<entity>);
+		System.out.println(daoFormation.findByKey(10L));
+		System.out.println(daoFormation.findByKey(100L));
 
-		// delete
-		// em.remove(<entity>);
-
-		// persist,merge,remove=>gestion transaction
-
-		// findByKey
-		// em.find(Class<entity>, key)
-
-		Formation formation = new Formation();
-		formation.setId(10L);
-		formation.setNom("java");
-		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
-
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		em.persist(formation);
-		tx.commit();
-		em.close();
-
-		formation.setNom("formation java");
-		em = Context.getInstance().getEntityManagerFactory().createEntityManager();
-		tx = em.getTransaction();
-		tx.begin();
-		formation = em.merge(formation);
-		tx.commit();
-		em.close();
-
+		// daoFormation.deleteByKey(10L);
+		daoFormation.delete(f);
+		System.out.println(daoFormation.findByKey(10L));
 		// a faire en dernier
 		Context.destroy();
 	}
