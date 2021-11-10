@@ -93,4 +93,14 @@ class DaoPersonneJpaImpl implements DaoPersonne {
 		return stagiaires;
 	}
 
+	@Override
+	public Formateur findFormateurByID(Long key) {
+		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
+		Formateur formateur = em.find(Formateur.class, key);
+//		System.out.println("execution getFormation");
+//		System.out.println(formateur.getFormations());
+		em.close();
+		return formateur;
+	}
+
 }

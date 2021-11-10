@@ -10,4 +10,6 @@ public interface DaoPersonne extends DaoGeneric<Personne, Long> {
 	List<Formateur> findAllFormateur();
 
 	List<Stagiaire> findAllStagiaire();
+	
+	Formateur findFormateurByID(Long key);
 }

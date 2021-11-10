@@ -2,13 +2,20 @@ package formationJpa.entity;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -26,6 +33,14 @@ public class Formation {
 	private String nom;
 	@Column(name = "formation_date")
 	private LocalDate date;
+	@ManyToOne
+	@JoinColumn(name = "formation_referent_id", foreignKey = @ForeignKey(name = "formation_referent_id"))
+	private Formateur referent;
+	@OneToMany(mappedBy ="id.formation" )
+	private Set<ModuleFormation> modules; 
+//	@ManyToMany
+//	@JoinTable(name = "module_formation", joinColumns = @JoinColumn(name = "module_formation_formation_id"), inverseJoinColumns = @JoinColumn(name = "module_formation_module_id"))
+//	private Set<Module> modules;
 
 //	@Temporal(TemporalType.DATE)
 //	private Date oldDate;
@@ -57,6 +72,22 @@ public class Formation {
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
+
+	public Formateur getReferent() {
+		return referent;
+	}
+
+	public void setReferent(Formateur referent) {
+		this.referent = referent;
+	}
+
+//	public Set<Module> getModules() {
+//		return modules;
+//	}
+//
+//	public void setModules(Set<Module> modules) {
+//		this.modules = modules;
+//	}
 
 	@Override
 	public int hashCode() {

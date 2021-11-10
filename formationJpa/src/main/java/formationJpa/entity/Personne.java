@@ -37,7 +37,11 @@ public abstract class Personne {
 	private String email;
 	@Column(name = "personne_telephone", length = 20)
 	private String telephone;
-
+	@Embedded
+	@AttributeOverrides({ @AttributeOverride(name = "numero", column = @Column(name = "personne_numero")),
+			@AttributeOverride(name = "rue", column = @Column(name = "personne_rue")),
+			@AttributeOverride(name = "codePostal", column = @Column(name = "personne_code_postal", length = 20)),
+			@AttributeOverride(name = "ville", column = @Column(name = "personne_ville")) })
 	private Adresse adresse;
 	@Enumerated(EnumType.STRING)
 	@Column(name = "personne_civilite", length = 4)
@@ -95,11 +99,6 @@ public abstract class Personne {
 		this.telephone = telephone;
 	}
 
-	@Embedded
-	@AttributeOverrides({ @AttributeOverride(name = "numero", column = @Column(name = "personne_numero")),
-			@AttributeOverride(name = "rue", column = @Column(name = "personne_rue")),
-			@AttributeOverride(name = "codePostal", column = @Column(name = "personne_code_postal", length = 20)),
-			@AttributeOverride(name = "ville", column = @Column(name = "personne_ville")) })
 	public Adresse getAdresse() {
 		return adresse;
 	}

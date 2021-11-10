@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -19,6 +21,8 @@ public class Ordinateur extends Materiel {
 	@Column(name = "ordinateur_disque", length = 10)
 	@Enumerated(EnumType.STRING)
 	private Disque disque;
+	@OneToOne(mappedBy = "pc",fetch = FetchType.EAGER)
+	private Stagiaire stagiaire;
 
 	public Ordinateur() {
 
@@ -38,6 +42,14 @@ public class Ordinateur extends Materiel {
 
 	public void setDisque(Disque disque) {
 		this.disque = disque;
+	}
+
+	public Stagiaire getStagiaire() {
+		return stagiaire;
+	}
+
+	public void setStagiaire(Stagiaire stagiaire) {
+		this.stagiaire = stagiaire;
 	}
 
 }
