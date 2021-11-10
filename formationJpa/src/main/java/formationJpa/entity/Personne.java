@@ -6,23 +6,25 @@ import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
-@MappedSuperclass
-//@Entity
+//@MappedSuperclass
+@Entity
 //@Table(name = "personne")
-//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 //@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 //@DiscriminatorColumn(name = "type",discriminatorType = DiscriminatorType.STRING,length = 10)
-@SequenceGenerator(name = "seqPersonne", sequenceName = "seq_personne", allocationSize = 1, initialValue = 100)
+//@SequenceGenerator(name = "seqPersonne", sequenceName = "seq_personne", allocationSize = 1, initialValue = 100)
 public abstract class Personne {
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqPersonne")
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqPersonne")
 //	@Column(name = "personne_id")
 	private Long id;
 	@Column(name = "personne_prenom", length = 200)
@@ -45,8 +47,6 @@ public abstract class Personne {
 
 	}
 
-	@Id
-	@GeneratedValue
 	public Long getId() {
 		return id;
 	}

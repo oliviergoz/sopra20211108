@@ -28,9 +28,9 @@ public class AppTest {
 		p.setExperience(10);
 		daoPersonne.insert(p);
 
-		Stagiaire s = new Stagiaire();
-		s.setEntreprise("sopra");
-		daoPersonne.insert(s);
+//		Stagiaire s = new Stagiaire();
+//		s.setEntreprise("sopra");
+//		daoPersonne.insert(s);
 
 //		daoPersonne.findByKey(s.getId());
 //		daoPersonne.findAll().forEach(personne -> {

@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Entity
 //@DiscriminatorValue("stagiaire")
 @Table(name = "stagiaire")
-@SequenceGenerator(name = "seqStagiaire", sequenceName = "seq_stagiaire", initialValue = 200, allocationSize = 1)
+@SequenceGenerator(name = "seqPersonne", sequenceName = "seq_stagiaire", initialValue = 200, allocationSize = 1)
 public class Stagiaire extends Personne {
 	@Column(name = "stagiaire_entreprise", length = 200)
 	private String entreprise;
@@ -29,10 +29,4 @@ public class Stagiaire extends Personne {
 		this.entreprise = entreprise;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqStagiaire")
-	@Override
-	public Long getId() {
-		return super.getId();
-	}
 }

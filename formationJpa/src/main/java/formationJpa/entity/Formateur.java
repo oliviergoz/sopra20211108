@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Entity
 //@DiscriminatorValue("formateur")
 @Table(name = "formateur")
-@SequenceGenerator(name = "seqFormateur", sequenceName = "seq_formateur", initialValue = 100, allocationSize = 1)
+@SequenceGenerator(name = "seqPersonne", sequenceName = "seq_formateur", initialValue = 100, allocationSize = 1)
 @AttributeOverrides({ @AttributeOverride(name = "id", column = @Column(name = "formateur_id")),
 		@AttributeOverride(name = "prenom", column = @Column(name = "formateur_prenom", length = 200)) })
 public class Formateur extends Personne {
@@ -32,11 +32,11 @@ public class Formateur extends Personne {
 		this.experience = experience;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqFormateur")
-	@Override
-	public Long getId() {
-		return super.getId();
-	}
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqFormateur")
+//	@Override
+//	public Long getId() {
+//		return super.getId();
+//	}
 
 }
