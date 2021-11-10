@@ -1,36 +1,31 @@
 package formationJpa.entity;
 
-import java.time.LocalDate;
-import java.util.Date;
-
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "formation")
-@SequenceGenerator(name = "seqFormation", sequenceName = "seq_formation", allocationSize = 1, initialValue = 100)
-public class Formation {
+@Table(name = "module")
+@SequenceGenerator(name = "seqModule", sequenceName = "seq_module", allocationSize = 1, initialValue = 100)
+public class Module {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqFormation")
-	@Column(name = "formation_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqModule")
+	@Column(name = "module_id")
 	private Long id;
-	@Column(name = "formation_nom", length = 150, nullable = false)
+	@Column(name = "module_name")
 	private String nom;
-	@Column(name = "formation_date")
-	private LocalDate date;
+	@Column(name = "module_description")
+	@Lob
+	private String description;
+	@Column(name = "module_duree")
+	private int duree;
 
-//	@Temporal(TemporalType.DATE)
-//	private Date oldDate;
-
-	public Formation() {
+	public Module() {
 
 	}
 
@@ -50,12 +45,20 @@ public class Formation {
 		this.nom = nom;
 	}
 
-	public LocalDate getDate() {
-		return date;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDate(LocalDate date) {
-		this.date = date;
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public int getDuree() {
+		return duree;
+	}
+
+	public void setDuree(int duree) {
+		this.duree = duree;
 	}
 
 	@Override
@@ -74,7 +77,7 @@ public class Formation {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Formation other = (Formation) obj;
+		Module other = (Module) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
