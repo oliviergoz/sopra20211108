@@ -2,6 +2,8 @@ package exoJpa.dao;
 
 import java.util.List;
 
+import exoJpa.entity.Client;
+
 public interface DaoGeneric<T, K> {
 	List<T> findAll();
 
@@ -9,7 +11,7 @@ public interface DaoGeneric<T, K> {
 
 	void insert(T obj);
 
-	void update(T obj);
+	T update(T obj);
 
 	void delete(T obj);
 

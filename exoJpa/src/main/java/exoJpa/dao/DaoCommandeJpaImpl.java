@@ -44,14 +44,14 @@ public class DaoCommandeJpaImpl implements DaoCommande {
 	}
 
 	@Override
-	public void update(Commande obj) {
+	public Commande update(Commande obj) {
 		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		em.merge(obj);
+		obj = em.merge(obj);
 		tx.commit();
 		em.close();
-
+		return obj;
 	}
 
 	@Override

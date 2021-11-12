@@ -41,13 +41,14 @@ public class DaoProduitJpaImpl implements DaoProduit {
 	}
 
 	@Override
-	public void update(Produit obj) {
+	public Produit update(Produit obj) {
 		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		em.merge(obj);
+		obj = em.merge(obj);
 		tx.commit();
 		em.close();
+		return obj;
 	}
 
 	@Override

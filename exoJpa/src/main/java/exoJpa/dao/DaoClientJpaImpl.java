@@ -39,13 +39,14 @@ public class DaoClientJpaImpl implements DaoClient {
 	}
 
 	@Override
-	public void update(Client obj) {
+	public Client update(Client obj) {
 		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		em.merge(obj);
+		obj = em.merge(obj);
 		tx.commit();
 		em.close();
+		return obj;
 
 	}
 

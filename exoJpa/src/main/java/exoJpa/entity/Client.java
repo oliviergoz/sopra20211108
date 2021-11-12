@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Version;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "client")
@@ -20,11 +23,18 @@ public class Client {
 	@Column(name = "client_id")
 	private Long id;
 	@Column(name = "client_prenom", nullable = false, length = 200)
+	@NotBlank
+	@NotEmpty
 	private String prenom;
+	@NotBlank
+	@NotEmpty
 	@Column(name = "client_nom", nullable = false, length = 200)
 	private String nom;
 	@OneToMany(mappedBy = "client")
 	private Set<Commande> commandes;
+	@Version
+	@Column(name="client_version")
+	private int version; 
 
 	public Client() {
 
