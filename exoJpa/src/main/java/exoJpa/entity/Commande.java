@@ -12,12 +12,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "commande")
+@NamedQueries({
+		@NamedQuery(name = "Commande.findByKeyWithLignesCommandes", query = "select distinct c from Commande c left join fetch c.lignesCommandes where c.numero=:numero"),
+		@NamedQuery(name = "Commande.findAllWithLignesCommandes", query = "select distinct c from Commande c left join fetch c.lignesCommandes ") })
 @SequenceGenerator(name = "seqCommande", sequenceName = "seq_commande", allocationSize = 1)
 public class Commande {
 	@Id

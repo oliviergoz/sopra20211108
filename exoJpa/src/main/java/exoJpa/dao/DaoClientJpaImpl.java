@@ -70,4 +70,26 @@ public class DaoClientJpaImpl implements DaoClient {
 		em.close();
 	}
 
+	public Client findByKeyWithCommandes(Long key) {
+		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
+		TypedQuery<Client> query = em.createQuery("select c from Client c left join fetch c.commandes where c.id=:key",
+				Client.class);
+		query.setParameter("key", key);
+		Client client = query.getSingleResult();
+		em.close();
+		return client;
+	}
+
+	public List<Client> findAllWithCommandes() {
+		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
+		TypedQuery<Client> query = em.createQuery("select distinct c from Client c left join fetch c.commandes", Client.class);
+		List<Client> clients = query.getResultList();
+		em.close();
+		return clients;
+	}
+	
+	// 2 olivier gozlan 1   =>Client(Commandes)
+	// 2 olivier gozlan 2	=>Client
+	// 3 Mathieu 		3	=>Client
+	// 4 Louis	... 		=>Client	
 }

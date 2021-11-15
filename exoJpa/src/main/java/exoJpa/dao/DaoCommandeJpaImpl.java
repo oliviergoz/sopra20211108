@@ -4,11 +4,11 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import exoJpa.Context;
 import exoJpa.entity.Commande;
-import exoJpa.entity.Produit;
 
 public class DaoCommandeJpaImpl implements DaoCommande {
 
@@ -66,12 +66,38 @@ public class DaoCommandeJpaImpl implements DaoCommande {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		Commande commande = em.find(Commande.class, key);
-		commande.getLignesCommandes().forEach(lc -> {
-			em.remove(lc);
-		});
+//		commande.getLignesCommandes().forEach(lc -> {
+//			em.remove(lc);
+//		});
+
+		Query deleteLigneCommande = em.createQuery("delete from LigneCommande lc where lc.id.commande.numero=:numero");
+		deleteLigneCommande.setParameter("numero", key);
+		deleteLigneCommande.executeUpdate();
 		em.remove(commande);
 		tx.commit();
 		em.close();
+	}
+
+	public Commande findByKeyWithLignesCommandes(Long key) {
+		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
+		TypedQuery<Commande> query = em.createNamedQuery("Commande.findByKeyWithLignesCommandes", Commande.class);
+		query.setParameter("numero", key);
+		// Commande commande = query.getSingleResult();
+		Commande commande = null;
+		List<Commande> list = query.getResultList();
+		if (!list.isEmpty()) {
+			commande = list.get(0);
+		}
+		em.close();
+		return commande;
+	}
+
+	public List<Commande> findAllWithLignesCommandes() {
+		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
+		TypedQuery<Commande> query = em.createNamedQuery("Commande.findAllWithLignesCommandes", Commande.class);
+		List<Commande> list = query.getResultList();
+		em.close();
+		return list;
 	}
 
 }
