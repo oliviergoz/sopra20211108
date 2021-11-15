@@ -4,9 +4,11 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
+import formationJpa.entity.Formateur;
 import formationJpa.entity.Formation;
 import formationJpa.util.Context;
 
@@ -70,5 +72,36 @@ class DaoFormationJpaImpl implements DaoFormation {
 		tx.commit();
 		em.close();
 
+	}
+
+	@Override
+	public List<Formation> findWithModules() {
+		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
+		TypedQuery<Formation> query = em.createNamedQuery("Formation.findWithModules", Formation.class);
+		List<Formation> list = query.getResultList();
+		em.close();
+		return list;
+	}
+
+	@Override
+	public Formation findByIdWithModules(Long id) {
+		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
+		TypedQuery<Formation> query = em.createNamedQuery("Formation.findByIdWithModules", Formation.class);
+		query.setParameter("id", id);
+		Formation formation = null;
+		formation = query.getSingleResult();
+		em.close();
+		return formation;
+	}
+
+	@Override
+	public List<Formation> findByReferent(Formateur formateur) {
+		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
+		TypedQuery<Formation> query = em.createNamedQuery("Formation.findByReferent", Formation.class);
+		query.setParameter("referent", formateur);
+		query.setHint("org.hibernate.cacheble", true);
+		List<Formation> list = query.getResultList();
+		em.close();
+		return list;
 	}
 }

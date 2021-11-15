@@ -8,18 +8,22 @@ import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "module_formation")
+@NamedQueries({
+		@NamedQuery(name = "findByFormateur", query = "select mf from ModuleFormation mf left join fetch mf.id.formation left join fetch mf.id.module where mf.formateur=:formateur") })
 public class ModuleFormation {
 
 	@EmbeddedId
 	private ModuleFormationKey id;
-	@Column(name="module_formation_date")
+	@Column(name = "module_formation_date")
 	private LocalDate date;
 	@ManyToOne
-	@JoinColumn(name="module_formation_formateur_id",foreignKey = @ForeignKey(name="module_formation_formateur_id_fk"))
+	@JoinColumn(name = "module_formation_formateur_id", foreignKey = @ForeignKey(name = "module_formation_formateur_id_fk"))
 	private Formateur formateur;
 
 	public ModuleFormation() {

@@ -1,11 +1,16 @@
 package formationJpa.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -24,6 +29,8 @@ public class Module {
 	private String description;
 	@Column(name = "module_duree")
 	private int duree;
+	@OneToMany(mappedBy = "id.module")
+	private Set<ModuleFormation> modulesFormations;
 
 	public Module() {
 
@@ -59,6 +66,14 @@ public class Module {
 
 	public void setDuree(int duree) {
 		this.duree = duree;
+	}
+
+	public Set<ModuleFormation> getModulesFormations() {
+		return modulesFormations;
+	}
+
+	public void setModulesFormations(Set<ModuleFormation> modulesFormations) {
+		this.modulesFormations = modulesFormations;
 	}
 
 	@Override

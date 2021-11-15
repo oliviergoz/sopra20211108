@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.validation.constraints.Pattern;
 
 //@MappedSuperclass
 @Entity
@@ -36,6 +37,7 @@ public abstract class Personne {
 	@Column(name = "personne_email", length = 200)
 	private String email;
 	@Column(name = "personne_telephone", length = 20)
+	@Pattern(regexp = "^(0|\\+33 )[1-9]([-. ]?[0-9]{2} ){3}([-. ]?[0-9]{2})$")
 	private String telephone;
 	@Embedded
 	@AttributeOverrides({ @AttributeOverride(name = "numero", column = @Column(name = "personne_numero")),

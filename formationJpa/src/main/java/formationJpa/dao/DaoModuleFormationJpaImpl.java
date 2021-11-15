@@ -1,6 +1,8 @@
 package formationJpa.dao;
 
 import java.util.List;
+
+import formationJpa.entity.Formateur;
 import formationJpa.entity.ModuleFormation;
 import formationJpa.entity.ModuleFormationKey;
 
@@ -10,7 +12,7 @@ import javax.persistence.TypedQuery;
 
 import formationJpa.util.Context;
 
- class DaoModuleFormationJpaImpl implements DaoModuleFormation {
+class DaoModuleFormationJpaImpl implements DaoModuleFormation {
 
 	@Override
 	public List<ModuleFormation> findAll() {
@@ -67,6 +69,16 @@ import formationJpa.util.Context;
 		em.remove(em.find(ModuleFormation.class, key));
 		tx.commit();
 		em.close();
+	}
+
+	public List<ModuleFormation> findByFormateur(Formateur formateur) {
+		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
+		TypedQuery<ModuleFormation> query = em.createNamedQuery("ModuleFormation.findByFormateur",
+				ModuleFormation.class);
+		query.setParameter("formateur", formateur);
+		List<ModuleFormation> list = query.getResultList();
+		em.close();
+		return list;
 	}
 
 }

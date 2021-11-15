@@ -4,9 +4,11 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,15 +17,26 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 @Entity
 @Table(name = "formation")
 @SequenceGenerator(name = "seqFormation", sequenceName = "seq_formation", allocationSize = 1, initialValue = 100)
+@NamedQueries({
+		@NamedQuery(name = "Formation.findWithModules", query = "select f from Formation f left join fetch f.modules"),
+		@NamedQuery(name = "Formation.findByIdWithModules", query = "select f from Formation f left join fetch f.modules where f.id=:id"),
+		@NamedQuery(name = "Formation.findByReferent", query = "select f from Formation f where f.referent=:referent") })
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Formation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqFormation")
@@ -33,11 +46,11 @@ public class Formation {
 	private String nom;
 	@Column(name = "formation_date")
 	private LocalDate date;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "formation_referent_id", foreignKey = @ForeignKey(name = "formation_referent_id"))
-	private Formateur referent;
-	@OneToMany(mappedBy ="id.formation" )
-	private Set<ModuleFormation> modules; 
+	private Formateur referent; // from Formation f where f.referent.prenom='olivier'
+	@OneToMany(mappedBy = "id.formation", fetch = FetchType.LAZY)
+	private Set<ModuleFormation> modules; // from Formation f join f.modules m join m.??? where m.nom='java'
 //	@ManyToMany
 //	@JoinTable(name = "module_formation", joinColumns = @JoinColumn(name = "module_formation_formation_id"), inverseJoinColumns = @JoinColumn(name = "module_formation_module_id"))
 //	private Set<Module> modules;
