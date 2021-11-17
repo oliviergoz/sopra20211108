@@ -1,5 +1,6 @@
 package formationSpring.bean;
 
+import org.aspectj.lang.annotation.After;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -18,9 +19,13 @@ public class Guitariste implements Musicien {
 	}
 
 	public void setInstrument(Instrument instrument) {
-		System.out.println("set done");
 		this.instrument = instrument;
-		System.out.println("instrument:" + this.instrument);
+	}
+
+	@Override
+	public void jouer() {
+		System.out.println("le guitariste joue");
+
 	}
 
 }

@@ -8,10 +8,10 @@ import formationSpring.bean.Musicien;
 public class AppSpring {
 
 	@Autowired
-	@Qualifier("saxophinste")
+	@Qualifier("saxophoniste")
 	private Musicien musicien;
 
 	public void run(String... args) {
-		System.out.println(musicien);
+		musicien.jouer();
 	}
 }

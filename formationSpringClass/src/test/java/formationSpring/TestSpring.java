@@ -23,5 +23,6 @@ public class TestSpring {
 	@Test
 	public void testInjectionMusicien() {
 		assertNotNull(musicien);
+		fail("fail");
 	}
 }

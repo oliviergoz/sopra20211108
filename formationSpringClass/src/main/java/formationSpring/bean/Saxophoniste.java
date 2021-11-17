@@ -18,4 +18,10 @@ public class Saxophoniste implements Musicien {
 		this.instrument = instrument;
 	}
 
+	@Override
+	public void jouer() {
+		System.out.println("le saxophoniste joue");
+		//throw new IllegalArgumentException();
+	}
+
 }
