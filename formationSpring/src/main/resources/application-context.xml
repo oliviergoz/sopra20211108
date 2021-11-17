@@ -11,7 +11,30 @@
 	</bean>
 	<bean id="guitare2" class="formationSpring.Guitare"></bean>
 	<bean id="saxo" class="formationSpring.Saxophone"></bean>
-	<bean id="guitariste" class="formationSpring.Saxophoniste">
+	<bean id="guitariste" class="formationSpring.Guitariste">
 		<property name="instrument" ref="saxo"></property>
 	</bean>
+	<bean id="codeAGreffe" class="formationSpring.MonAspect"></bean>
+
+	<aop:config>
+		<aop:pointcut
+			expression="execution(formationSpring.Instrument formationSpring.Guitariste.getInstrument() )"
+			id="pointcut1" />
+
+		<aop:aspect id="monAspect" ref="codeAGreffe">
+			<aop:before method="methode1" pointcut-ref="pointcut1" />
+			<aop:after-returning method="methode2"
+				pointcut-ref="pointcut1" returning="instrument" />
+			<aop:after-throwing method="methode3"
+				pointcut-ref="pointcut1" />
+		</aop:aspect>
+	</aop:config>
 </beans>
+
+
+
+
+	
+
+
+

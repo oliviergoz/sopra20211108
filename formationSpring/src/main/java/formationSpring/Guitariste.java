@@ -8,6 +8,7 @@ public class Guitariste implements Musicien {
 	}
 
 	public Instrument getInstrument() {
+		// throw new IllegalArgumentException();
 		return instrument;
 	}
 

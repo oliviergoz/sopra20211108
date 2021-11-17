@@ -32,7 +32,12 @@ public class DaoCasqueJpaImpl implements DaoCasque {
 		EntityManager em = Context.getInstance().getEntityManagerFactory().createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		em.persist(obj);
+		try {
+			em.persist(obj);
+		} catch (Exception e) {
+			e.printStackTrace();
+			tx.rollback();
+		}
 		tx.commit();
 		em.close();
 	}
