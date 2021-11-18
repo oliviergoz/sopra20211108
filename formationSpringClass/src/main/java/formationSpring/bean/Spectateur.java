@@ -23,10 +23,6 @@ public class Spectateur {
 
 	}
 
-	@Pointcut("execution(* formationSpring.bean.Guitariste.jouer())")
-	public void jouerGuitariste() {
-
-	}
 
 	@Pointcut("execution(* formationSpring.bean.Saxophoniste.jouer())")
 	public void jouerSaxophoniste() {
@@ -50,6 +46,7 @@ public class Spectateur {
 
 	@After("jouerSaxophoniste()")
 	public void partir() {
+		System.out.println("le public demande au 2eme musicien de jouer");
 		secondMusicien.jouer();
 		System.out.println("le public part");
 	}
