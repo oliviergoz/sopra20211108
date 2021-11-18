@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -16,6 +18,8 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "client")
+@NamedQueries({
+		@NamedQuery(name = "Client.findAllWithCommandes", query = "select c from Client c left join fetch c.commandes") })
 @SequenceGenerator(name = "seqClient", sequenceName = "seq_client", allocationSize = 1)
 public class Client {
 	@Id
@@ -33,8 +37,8 @@ public class Client {
 	@OneToMany(mappedBy = "client")
 	private Set<Commande> commandes;
 	@Version
-	@Column(name="client_version")
-	private int version; 
+	@Column(name = "client_version")
+	private int version;
 
 	public Client() {
 

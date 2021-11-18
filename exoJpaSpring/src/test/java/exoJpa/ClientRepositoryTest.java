@@ -25,20 +25,25 @@ public class ClientRepositoryTest {
 	@Autowired
 	private ClientRepository clientRepository;
 
-	// @Test
+	@Test
 	public void clientRepoTestEnVrac() {
-		Client clientTest = new Client("valentin", "?");
-		clientRepository.save(clientTest);
-		Optional<Client> opt = clientRepository.findById(clientTest.getId());
-		assertTrue(opt.isPresent());
-		clientRepository.delete(opt.get());
+//		Client clientTest = new Client("valentin", "?");
+//		clientRepository.save(clientTest);
+//		Optional<Client> opt = clientRepository.findById(clientTest.getId());
+//		assertTrue(opt.isPresent());
+//		clientRepository.delete(opt.get());
+//		System.out.println(clientRepository.findByPrenomContaining("i"));
+//		System.out.println(clientRepository.findByPrenomContainingOrNomContaining("a", "o"));
+
+		clientRepository.findByIdWithCommandes(2L);
+		clientRepository.findAllWithCommandes();
 	}
 
-	@Test
+	// @Test
 	public void sortTest() {
 		System.out.println(clientRepository.findById(9999999L));
-		Client c = clientRepository.findById(9999999L).orElse(null);
-		System.out.println(c);
+		Client c = clientRepository.findById(2L).orElse(null);
+		System.out.println(c.getCommandes());
 		// clientRepository.findById(9999999L).orElseThrow();
 		System.out.println(clientRepository.findAll(Sort.by("prenom")));
 
