@@ -9,17 +9,38 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import exoJpa.config.AppConfig;
-import exoJpa.dao.DaoClient;
+import exoJpa.services.CommandeService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { AppConfig.class })
-public class AppTest {
+public class CommandeTest {
 
 	@Autowired
-	private DaoClient daoClient;
+	private CommandeService commandeService;
 
 	@Test
-	public void daoClientInjectionTest() {
-		assertNotNull(daoClient);
+	public void testCreate() {
+		fail("Not yet implemented");
 	}
+
+	@Test
+	public void testUpdate() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testByNumero() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testByClient() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testDelete() {
+		fail("Not yet implemented");
+	}
+
 }

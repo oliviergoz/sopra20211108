@@ -20,7 +20,7 @@ import javax.validation.constraints.NotEmpty;
 @Table(name = "client")
 @NamedQueries({
 		@NamedQuery(name = "Client.findAllWithCommandes", query = "select c from Client c left join fetch c.commandes") })
-@SequenceGenerator(name = "seqClient", sequenceName = "seq_client", allocationSize = 1)
+@SequenceGenerator(name = "seqClient", sequenceName = "seq_client", allocationSize = 1, initialValue = 100)
 public class Client {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqClient")

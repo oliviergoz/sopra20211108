@@ -12,9 +12,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name = "produit")
-@SequenceGenerator(name = "seqProduit", sequenceName = "seq_produit", allocationSize = 1)
+@SequenceGenerator(name = "seqProduit", sequenceName = "seq_produit", allocationSize = 1, initialValue = 100)
 public class Produit {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqProduit")
@@ -27,6 +29,7 @@ public class Produit {
 	private String description;
 	@Lob
 	@Column(name = "produit_photo")
+	@Type(type = "org.hibernate.type.BinaryType")
 	private byte[] photo;
 	@OneToMany(mappedBy = "id.produit")
 	private Set<LigneCommande> lignesCommandes;

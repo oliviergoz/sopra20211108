@@ -1,5 +1,8 @@
 package exoJpa.repositories;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,4 +18,9 @@ public interface CommandeRepository extends JpaRepository<Commande, Long> {
 	@Modifying
 	@Query("update Commande c set c.client=null where c.client=:client")
 	void removeClientFromCommandeByClient(@Param("client") Client client);
+
+	List<Commande> findByClient(Client client);
+
+	@Query("select c from Commande c left join fetch c.lignesCommandes")
+	Optional<Commande> findByNumeroWithLigneCommande(Long numero);
 }

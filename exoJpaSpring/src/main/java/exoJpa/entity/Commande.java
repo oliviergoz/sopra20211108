@@ -17,13 +17,14 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "commande")
 @NamedQueries({
 		@NamedQuery(name = "Commande.findByKeyWithLignesCommandes", query = "select distinct c from Commande c left join fetch c.lignesCommandes where c.numero=:numero"),
 		@NamedQuery(name = "Commande.findAllWithLignesCommandes", query = "select distinct c from Commande c left join fetch c.lignesCommandes ") })
-@SequenceGenerator(name = "seqCommande", sequenceName = "seq_commande", allocationSize = 1)
+@SequenceGenerator(name = "seqCommande", sequenceName = "seq_commande", allocationSize = 1, initialValue = 100)
 public class Commande {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqCommande")
@@ -33,6 +34,7 @@ public class Commande {
 	private LocalDate date = LocalDate.now();
 	@ManyToOne
 	@JoinColumn(name = "commande_client_id", foreignKey = @ForeignKey(name = "commande_client_id_fk"))
+	@NotNull
 	private Client client;
 	@OneToMany(mappedBy = "id.commande")
 	private Set<LigneCommande> lignesCommandes = new HashSet<LigneCommande>();

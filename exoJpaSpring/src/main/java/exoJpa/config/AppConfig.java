@@ -3,6 +3,8 @@ package exoJpa.config;
 import java.util.Properties;
 
 import javax.persistence.EntityManagerFactory;
+import javax.validation.Validation;
+import javax.validation.Validator;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +52,7 @@ public class AppConfig {
 
 	private Properties hibernateProperties() {
 		Properties hibernateProperties = new Properties();
-		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "validate");
+		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
 		hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
 		hibernateProperties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
 		hibernateProperties.setProperty("hibernate.format_sql", "true");
@@ -61,5 +63,11 @@ public class AppConfig {
 	public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
 		JpaTransactionManager transactionManager = new JpaTransactionManager(entityManagerFactory);
 		return transactionManager;
+	}
+
+	@Bean
+	public Validator validator() {
+		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+		return validator;
 	}
 }
