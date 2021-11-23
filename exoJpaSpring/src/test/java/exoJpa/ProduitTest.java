@@ -7,8 +7,11 @@ import static org.junit.Assert.fail;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Commit;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import exoJpa.config.AppConfig;
 import exoJpa.entity.Produit;
@@ -17,13 +20,15 @@ import exoJpa.services.ProduitService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { AppConfig.class })
+@Transactional
+@Rollback(true)
 public class ProduitTest {
 
 	@Autowired
 	private ProduitService produitService;
 
 	private Produit getProduit() {
-		Produit produit = new Produit("nom test", "description produit test");
+		Produit produit = new Produit("nom testtttttt", "description produit test");
 		return produit;
 	}
 
@@ -31,13 +36,12 @@ public class ProduitTest {
 		return new Produit(nom, description);
 	}
 
-	@Test(expected = ProduitException.class)
+	@Test
+	//@Commit
 	public void testSave() {
 		Produit produit = getProduit();
 		produitService.save(produit);
 		assertNotNull(produitService.byId(produit.getId()));
-		produitService.delete(produit);
-		produitService.byId(produit.getId());
 	}
 
 	@Test
