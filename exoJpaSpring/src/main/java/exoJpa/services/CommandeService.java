@@ -40,6 +40,10 @@ public class CommandeService {
 		ligneCommandeRepository.deleteByCommandeAndProduit(commande, produit);
 	}
 
+	public List<Commande> all() {
+		return commandeRepository.findAll();
+	}
+
 	public Commande byNumero(Long numero) {
 		return commandeRepository.findById(numero).orElseThrow(CommandeException::new);
 	}

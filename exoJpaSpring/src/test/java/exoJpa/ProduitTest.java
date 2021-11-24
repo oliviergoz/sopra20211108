@@ -37,14 +37,14 @@ public class ProduitTest {
 	}
 
 	@Test
-	//@Commit
+	// @Commit
 	public void testSave() {
 		Produit produit = getProduit();
 		produitService.save(produit);
 		assertNotNull(produitService.byId(produit.getId()));
 	}
 
-	@Test
+	// @Test
 	public void testByIdSuccess() {
 		assertNotNull(produitService.byId(1L));
 	}
@@ -59,7 +59,7 @@ public class ProduitTest {
 		assertNotNull(produitService.all());
 	}
 
-	@Test
+	// @Test
 	public void testByNom() {
 		assertNotNull(produitService.byNom("te"));
 	}

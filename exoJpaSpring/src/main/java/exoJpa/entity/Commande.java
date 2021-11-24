@@ -19,6 +19,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "commande")
 @NamedQueries({
@@ -31,6 +33,7 @@ public class Commande {
 	@Column(name = "commande_numero")
 	private Long numero;
 	@Column(name = "commande_date")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate date = LocalDate.now();
 	@ManyToOne
 	@JoinColumn(name = "commande_client_id", foreignKey = @ForeignKey(name = "commande_client_id_fk"))

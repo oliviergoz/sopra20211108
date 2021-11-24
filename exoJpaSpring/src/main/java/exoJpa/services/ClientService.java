@@ -51,6 +51,10 @@ public class ClientService {
 		clientRepository.delete(clientEnBase);
 	}
 
+	public void delete(Long id) {
+		delete(clientRepository.findById(id).orElseThrow(ClientException::new));
+	}
+
 	public List<Client> allClient() {
 		return clientRepository.findAll();
 	}

@@ -4,6 +4,8 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,11 +36,18 @@ public class Client {
 	@NotEmpty
 	@Column(name = "client_nom", nullable = false, length = 200)
 	private String nom;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "client_civilite", length = 5)
+	private Civilite civilite;
 	@OneToMany(mappedBy = "client")
 	private Set<Commande> commandes;
 	@Version
 	@Column(name = "client_version")
 	private int version;
+
+	public String getInfos() {
+		return id+" "+prenom + " " + nom;
+	}
 
 	public Client() {
 
@@ -79,6 +88,22 @@ public class Client {
 
 	public void setCommandes(Set<Commande> commandes) {
 		this.commandes = commandes;
+	}
+
+	public Civilite getCivilite() {
+		return civilite;
+	}
+
+	public void setCivilite(Civilite civilite) {
+		this.civilite = civilite;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	@Override

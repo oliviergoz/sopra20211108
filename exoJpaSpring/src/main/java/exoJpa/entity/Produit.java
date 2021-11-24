@@ -11,6 +11,9 @@ import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.Type;
 
@@ -23,6 +26,7 @@ public class Produit {
 	@Column(name = "produit_id")
 	private Long id;
 	@Column(name = "produit_nom", nullable = false, length = 200)
+	@NotEmpty
 	private String nom;
 	@Lob
 	@Column(name = "produit_description")
@@ -31,6 +35,9 @@ public class Produit {
 	@Column(name = "produit_photo")
 	@Type(type = "org.hibernate.type.BinaryType")
 	private byte[] photo;
+	@Column(name = "produit_prix")
+	@DecimalMin(value = "0.1", message = "il faut un prix superieur à 0")
+	private double prix;
 	@OneToMany(mappedBy = "id.produit")
 	private Set<LigneCommande> lignesCommandes;
 
@@ -87,6 +94,14 @@ public class Produit {
 
 	public void setLignesCommandes(Set<LigneCommande> lignesCommandes) {
 		this.lignesCommandes = lignesCommandes;
+	}
+
+	public double getPrix() {
+		return prix;
+	}
+
+	public void setPrix(double prix) {
+		this.prix = prix;
 	}
 
 	@Override

@@ -21,12 +21,18 @@ public class ExerciceController {
 
 	// @RequestMapping(path = "/form", method = RequestMethod.POST)
 	@PostMapping("/form")
-	public String validationFormulaire(@RequestParam(name = "prenom", required = false) String prenom, Model model,HttpSession session) {
+	public String validationFormulaire(@RequestParam(name = "prenom", required = false) String prenom, Model model,
+			HttpSession session) {
 		if (prenom == null || prenom.isEmpty()) {
 			model.addAttribute("error", true);
 			return "exo/form";
 		}
 		model.addAttribute("prenom", prenom);
+		return "redirect:/exo/hello";
+	}
+
+	@GetMapping("/hello")
+	public String hello(Model model) {
 		return "exo/hello";
 	}
 }
