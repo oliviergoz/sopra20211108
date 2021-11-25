@@ -1,7 +1,9 @@
 package demoMvc.controller;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,10 +12,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import exoJpa.entity.Commande;
+import exoJpa.entity.LigneCommande;
+import exoJpa.entity.LigneCommandePK;
 import exoJpa.entity.Produit;
+import exoJpa.services.ClientService;
+import exoJpa.services.CommandeService;
 import exoJpa.services.ProduitService;
 
 @Controller
@@ -22,6 +30,10 @@ public class PanierController {
 
 	@Autowired
 	private ProduitService produitService;
+	@Autowired
+	private ClientService clientService;
+	@Autowired
+	private CommandeService commandeService;
 
 	@GetMapping("")
 	public String afficher(Model model) {
@@ -54,6 +66,31 @@ public class PanierController {
 			panier.put(produit, panier.get(produit) - 1);
 		}
 		return "redirect:/panier";
+	}
 
+	@GetMapping("/recap")
+	public String recap() {
+		return "panier/recap";
+	}
+
+	@GetMapping("/valider")
+	public String valider(Model model) {
+		model.addAttribute("clients", clientService.allClient());
+		// model.addAttribute("client", new Client());
+		model.addAttribute("commande", new Commande());
+		return "panier/clients";
+	}
+
+	@PostMapping("/save")
+	public String enregistrer(@ModelAttribute("commande") Commande commande, HttpSession session, Model model) {
+		Map<Produit, Integer> panier = getPanier(session);
+		Set<LigneCommande> lc = new HashSet<LigneCommande>();
+		panier.forEach((produit, quantite) -> {
+			lc.add(new LigneCommande(new LigneCommandePK(commande, produit), quantite));
+		});
+		commande.setLignesCommandes(lc);
+		commandeService.create(commande);
+		session.invalidate();
+		return "redirect:/panier";
 	}
 }

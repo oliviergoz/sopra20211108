@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,36 +22,16 @@
 </head>
 <body>
 	<div class="container">
-		<h1>liste des produits</h1>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>nom:</th>
-					<th>description:</th>
-					<th>prix</th>
-					<th></th>
-					<th></th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${produits}" var="p">
-					<tr>
-						<td>${p.nom}</td>
-						<td>${p.description}</td>
-						<td>${p.prix}</td>
-						<td><a href="panier/add?id=${p.id}" class="btn btn-link">ajouter
-								au panier</a></td>
-						<td>${panier[p]}</td>
-						<td><c:if test="${panier[p]!=null}">
-								<a href="panier/remove?id=${p.id}" class="btn btn-link">supprimer
-									du panier</a>
-							</c:if></td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		<a href="panier/recap" class="btn btn-link">recap panier</a>
+		<form:form modelAttribute="commande" action="save" method="post">
+			<div class="form-group">
+				<form:select path="client.id" cssClass="form-control" size="10">
+					<form:options items="${clients}" itemLabel="infos" itemValue="id" />
+				</form:select>
+			</div>
+			<div>
+				<button type="submit" class="btn btn-outline-success">enregistrer</button>
+			</div>
+		</form:form>
 	</div>
 </body>
 </html>

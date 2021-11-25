@@ -22,36 +22,36 @@
 </head>
 <body>
 	<div class="container">
-		<h1>liste des produits</h1>
+		<h1>mon panier</h1>
 		<table class="table">
 			<thead>
 				<tr>
 					<th>nom:</th>
-					<th>description:</th>
 					<th>prix</th>
-					<th></th>
-					<th></th>
-					<th></th>
+					<th>quantite:</th>
+					<th>total:</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${produits}" var="p">
+				<c:set var="total" value="0"></c:set>
+				<c:forEach items="${panier}" var="e">
 					<tr>
-						<td>${p.nom}</td>
-						<td>${p.description}</td>
-						<td>${p.prix}</td>
-						<td><a href="panier/add?id=${p.id}" class="btn btn-link">ajouter
-								au panier</a></td>
-						<td>${panier[p]}</td>
-						<td><c:if test="${panier[p]!=null}">
-								<a href="panier/remove?id=${p.id}" class="btn btn-link">supprimer
-									du panier</a>
-							</c:if></td>
+						<td>${e.key.nom}</td>
+						<td>${e.key.prix}</td>
+						<td>${e.value}</td>
+						<td>${e.value * e.key.prix}</td>
 					</tr>
+					<c:set var="total" value="${total + e.value * e.key.prix}"></c:set>
 				</c:forEach>
+				<tr>
+					<td></td>
+					<td></td>
+					<td>total panier:</td>
+					<td>${total}</td>
+				</tr>
 			</tbody>
 		</table>
-		<a href="panier/recap" class="btn btn-link">recap panier</a>
+		<a href="valider" class="btn btn-link">valider</a>
 	</div>
 </body>
 </html>
