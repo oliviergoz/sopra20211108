@@ -41,6 +41,7 @@ public class ProduitService {
 	}
 
 	public void delete(Long id) {
+		ligneCommandeRepository.deleteByProduit(byId(id));
 		produitRepository.deleteById(id);
 	}
 

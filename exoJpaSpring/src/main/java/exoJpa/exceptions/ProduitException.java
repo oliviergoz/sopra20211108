@@ -1,5 +1,6 @@
 package exoJpa.exceptions;
 
+
 public class ProduitException extends RuntimeException {
 	public ProduitException() {
 
