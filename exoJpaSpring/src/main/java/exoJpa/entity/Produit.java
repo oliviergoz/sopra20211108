@@ -12,10 +12,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.Type;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name = "produit")
@@ -24,21 +25,28 @@ public class Produit {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqProduit")
 	@Column(name = "produit_id")
+	@JsonView(JsonViews.Common.class)
 	private Long id;
 	@Column(name = "produit_nom", nullable = false, length = 200)
 	@NotEmpty
+	@JsonView(JsonViews.Common.class)
 	private String nom;
 	@Lob
 	@Column(name = "produit_description")
+	@JsonView(JsonViews.Common.class)
 	private String description;
 	@Lob
 	@Column(name = "produit_photo")
 	@Type(type = "org.hibernate.type.BinaryType")
+	@JsonView(JsonViews.Common.class)
 	private byte[] photo;
 	@Column(name = "produit_prix")
 	@DecimalMin(value = "0.1", message = "il faut un prix superieur à 0")
+	@JsonView(JsonViews.Common.class)
 	private double prix;
+	// @JsonIgnore
 	@OneToMany(mappedBy = "id.produit")
+	@JsonView(JsonViews.ProduitAvecLigneCommande.class)
 	private Set<LigneCommande> lignesCommandes;
 	@Column(name="produit_prix")
 	private double prix;
