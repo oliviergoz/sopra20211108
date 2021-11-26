@@ -21,6 +21,7 @@ public interface CommandeRepository extends JpaRepository<Commande, Long> {
 
 	List<Commande> findByClient(Client client);
 
-	@Query("select c from Commande c left join fetch c.lignesCommandes")
-	Optional<Commande> findByNumeroWithLigneCommande(Long numero);
+	@Transactional
+	@Query("select c from Commande c left join fetch c.lignesCommandes where c.numero=:numero")
+	Optional<Commande> findByNumeroWithLigneCommande(@Param("numero") Long numero);
 }

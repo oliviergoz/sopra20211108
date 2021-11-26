@@ -46,7 +46,7 @@ public class Produit {
 	private double prix;
 	// @JsonIgnore
 	@OneToMany(mappedBy = "id.produit")
-	@JsonView(JsonViews.ProduitAvecLigneCommande.class)
+	@JsonView({JsonViews.ProduitAvecLigneCommande.class})
 	private Set<LigneCommande> lignesCommandes;
 
 	public Produit() {

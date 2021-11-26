@@ -26,11 +26,12 @@ public class CommandeService {
 	@Autowired
 	private Validator validator;
 
-	public void create(Commande commande) {
+	public Commande create(Commande commande) {
 		Set<ConstraintViolation<Commande>> violations = validator.validate(commande);
 		if (violations.isEmpty()) {
 			commandeRepository.save(commande);
 			ligneCommandeRepository.saveAll(commande.getLignesCommandes());
+			return commande;
 		} else {
 			throw new CommandeException();
 		}

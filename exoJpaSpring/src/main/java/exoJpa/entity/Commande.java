@@ -21,6 +21,8 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "commande")
 @NamedQueries({
@@ -31,15 +33,21 @@ public class Commande {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqCommande")
 	@Column(name = "commande_numero")
+	@JsonView(JsonViews.Common.class)
 	private Long numero;
 	@Column(name = "commande_date")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonView(JsonViews.Common.class)
 	private LocalDate date = LocalDate.now();
 	@ManyToOne
 	@JoinColumn(name = "commande_client_id", foreignKey = @ForeignKey(name = "commande_client_id_fk"))
 	@NotNull
+	// @JsonView({ JsonViews.CommandeAvecClient.class,
+	// JsonViews.CommandeAvecLigneCommande.class })
+	@JsonView(JsonViews.CommandeAvecClient.class)
 	private Client client;
 	@OneToMany(mappedBy = "id.commande")
+	@JsonView(JsonViews.CommandeAvecLigneCommande.class)
 	private Set<LigneCommande> lignesCommandes = new HashSet<LigneCommande>();
 
 	public Commande() {

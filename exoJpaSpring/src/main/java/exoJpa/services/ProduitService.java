@@ -26,10 +26,10 @@ public class ProduitService {
 	@Autowired
 	private LigneCommandeRepository ligneCommandeRepository;
 
-	public void save(Produit produit) {
+	public Produit save(Produit produit) {
 		Set<ConstraintViolation<Produit>> violations = validator.validate(produit);
 		if (violations.isEmpty()) {
-			produitRepository.save(produit);
+			return produitRepository.save(produit);
 		} else {
 			throw new ProduitException();
 		}

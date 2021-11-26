@@ -18,6 +18,8 @@ import javax.persistence.Version;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "client")
 @NamedQueries({
@@ -27,17 +29,21 @@ public class Client {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqClient")
 	@Column(name = "client_id")
+	@JsonView(JsonViews.Common.class)
 	private Long id;
 	@Column(name = "client_prenom", nullable = false, length = 200)
 	@NotBlank
 	@NotEmpty
+	@JsonView(JsonViews.Common.class)
 	private String prenom;
 	@NotBlank
 	@NotEmpty
 	@Column(name = "client_nom", nullable = false, length = 200)
+	@JsonView(JsonViews.Common.class)
 	private String nom;
 	@Enumerated(EnumType.STRING)
 	@Column(name = "client_civilite", length = 5)
+	@JsonView(JsonViews.Common.class)
 	private Civilite civilite;
 	@OneToMany(mappedBy = "client")
 	private Set<Commande> commandes;

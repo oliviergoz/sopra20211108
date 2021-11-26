@@ -26,11 +26,11 @@ public class ClientService {
 	@Autowired
 	private CommandeRepository commandeRepository;
 
-	public void save(Client client) {
+	public Client save(Client client) {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		Set<ConstraintViolation<Client>> violations = validator.validate(client);
 		if (violations.isEmpty()) {
-			clientRepository.save(client);
+			return clientRepository.save(client);
 		} else {
 			throw new ClientException();
 		}
