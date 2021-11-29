@@ -22,6 +22,7 @@
 </head>
 <body>
 	<div class="container">
+	<jsp:include page="../logout.jsp"></jsp:include>
 		<form:form modelAttribute="commande" action="save" method="post">
 			<div class="form-group">
 				<form:select path="client.id" cssClass="form-control" size="10">

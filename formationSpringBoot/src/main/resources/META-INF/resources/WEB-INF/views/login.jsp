@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
+<c:set var="ctx" value="${pageContext.servletContext.contextPath}" />
 <html>
 <head>
 <meta charset="UTF-8">
@@ -22,27 +23,27 @@
 </head>
 <body>
 	<div class="container">
-	<jsp:include page="../logout.jsp"></jsp:include>
-		<h1>liste des commandes</h1>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>numero:</th>
-					<th>date:</th>
-					<th>client:</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${commandes}" var="c">
-					<tr>
-						<td>${c.numero}</td>
-						<td>${c.date}</td>
-						<td>${c.client.prenom}&nbsp;${c.client.nom }</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		<a href="commande/add" class="btn btn-link">nouvelle commande</a>
+		<h1>identification</h1>
+		<c:if test="${ param.error != null }">
+			<div class="alert alert-danger">authentification incorrecte</div>
+		</c:if>
+		<form action="" method="post">
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}">
+			<div class="form-group">
+				<label for="username">login:</label> <input id="username"
+					name="username" class="form-control" required="required">
+			</div>
+			<div class="form-group">
+				<label for="password">mot de passe:</label> <input type="password"
+					id="password" name="password" class="form-control"
+					required="required">
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn">envoyer</button>
+				<a href="${ctx}/public" class="btn btn-link">retour</a>
+			</div>
+		</form>
 	</div>
 </body>
 </html>
