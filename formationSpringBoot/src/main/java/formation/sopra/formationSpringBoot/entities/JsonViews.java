@@ -1,4 +1,4 @@
-package exoJpa.entity;
+package formation.sopra.formationSpringBoot.entities;
 
 public class JsonViews {
 	public static class Common {

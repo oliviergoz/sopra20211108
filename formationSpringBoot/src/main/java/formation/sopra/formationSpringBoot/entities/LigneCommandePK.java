@@ -1,4 +1,4 @@
-package exoJpa.entity;
+package formation.sopra.formationSpringBoot.entities;
 
 import java.io.Serializable;
 

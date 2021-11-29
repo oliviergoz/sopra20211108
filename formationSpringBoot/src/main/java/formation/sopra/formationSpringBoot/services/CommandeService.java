@@ -1,4 +1,4 @@
-package exoJpa.services;
+package formation.sopra.formationSpringBoot.services;
 
 import java.util.List;
 import java.util.Set;
@@ -9,12 +9,12 @@ import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import exoJpa.entity.Client;
-import exoJpa.entity.Commande;
-import exoJpa.entity.Produit;
-import exoJpa.exceptions.CommandeException;
-import exoJpa.repositories.CommandeRepository;
-import exoJpa.repositories.LigneCommandeRepository;
+import formation.sopra.formationSpringBoot.entities.Client;
+import formation.sopra.formationSpringBoot.entities.Commande;
+import formation.sopra.formationSpringBoot.entities.Produit;
+import formation.sopra.formationSpringBoot.exceptions.CommandeException;
+import formation.sopra.formationSpringBoot.repositories.CommandeRepository;
+import formation.sopra.formationSpringBoot.repositories.LigneCommandeRepository;
 
 @Service
 public class CommandeService {

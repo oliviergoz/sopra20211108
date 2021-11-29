@@ -1,20 +1,18 @@
-package exoJpa.services;
+package formation.sopra.formationSpringBoot.services;
 
 import java.util.List;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
 import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import exoJpa.entity.Client;
-import exoJpa.entity.Produit;
-import exoJpa.exceptions.ProduitException;
-import exoJpa.repositories.LigneCommandeRepository;
-import exoJpa.repositories.ProduitRepository;
+import formation.sopra.formationSpringBoot.entities.Produit;
+import formation.sopra.formationSpringBoot.exceptions.ProduitException;
+import formation.sopra.formationSpringBoot.repositories.LigneCommandeRepository;
+import formation.sopra.formationSpringBoot.repositories.ProduitRepository;
 
 @Service
 public class ProduitService {
@@ -43,11 +41,6 @@ public class ProduitService {
 	public void delete(Long id) {
 		ligneCommandeRepository.deleteByProduit(byId(id));
 		produitRepository.deleteById(id);
-	}
-	public void delete(Long id) {
-		Produit produit = byId(id);
-		ligneCommandeRepository.deleteByProduit(produit);
-		produitRepository.delete(produit);
 	}
 
 	public Produit byId(Long id) {

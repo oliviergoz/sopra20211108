@@ -1,4 +1,4 @@
-package exoJpa.services;
+package formation.sopra.formationSpringBoot.services;
 
 import java.util.List;
 import java.util.Set;
@@ -13,10 +13,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import exoJpa.entity.Client;
-import exoJpa.exceptions.ClientException;
-import exoJpa.repositories.ClientRepository;
-import exoJpa.repositories.CommandeRepository;
+import formation.sopra.formationSpringBoot.entities.Client;
+import formation.sopra.formationSpringBoot.exceptions.ClientException;
+import formation.sopra.formationSpringBoot.repositories.ClientRepository;
+import formation.sopra.formationSpringBoot.repositories.CommandeRepository;
 
 @Service
 public class ClientService {
