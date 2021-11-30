@@ -1,4 +1,6 @@
 server:
+  error:
+    include-message: always
   servlet:
     context-path: /eshop
 spring:
@@ -19,3 +21,24 @@ spring:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
+logging:
+  level:
+    root: ERROR
+    '[formation.sopra.formationSpringBoot.restcontroller.ClientRestController]': INFO    
+  file:
+    name: logs.log
+
+
+
+
+
+
+
+ 
+ #1 TRACE   
+ #2 DEBUG   
+ #3 INFO
+ #4 WARN
+ #5 ERROR
+ #6 FATAL
+ #7 OFF   

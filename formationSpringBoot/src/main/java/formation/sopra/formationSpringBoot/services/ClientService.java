@@ -1,5 +1,6 @@
 package formation.sopra.formationSpringBoot.services;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -11,12 +12,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import formation.sopra.formationSpringBoot.entities.Client;
+import formation.sopra.formationSpringBoot.entities.Role;
+import formation.sopra.formationSpringBoot.entities.User;
 import formation.sopra.formationSpringBoot.exceptions.ClientException;
 import formation.sopra.formationSpringBoot.repositories.ClientRepository;
 import formation.sopra.formationSpringBoot.repositories.CommandeRepository;
+import formation.sopra.formationSpringBoot.repositories.UserRepository;
 
 @Service
 public class ClientService {
@@ -25,12 +30,22 @@ public class ClientService {
 	private ClientRepository clientRepository;
 	@Autowired
 	private CommandeRepository commandeRepository;
+	@Autowired
+	private UserRepository userRepository;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	public Client save(Client client) {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		Set<ConstraintViolation<Client>> violations = validator.validate(client);
 		if (violations.isEmpty()) {
-			return clientRepository.save(client);
+			User user = client.getUser();
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
+			user.setRoles(Arrays.asList(Role.ROLE_USER));
+			user.setEnable(true);
+			userRepository.save(user);
+			client = clientRepository.save(client);
+			return client;
 		} else {
 			throw new ClientException();
 		}

@@ -54,6 +54,7 @@ public class Client {
 	private int version;
 	@OneToOne
 	@JoinColumn(name = "client_user_id")
+	@JsonView(JsonViews.ClientAvecUser.class)
 	private User user;
 
 	public String getInfos() {

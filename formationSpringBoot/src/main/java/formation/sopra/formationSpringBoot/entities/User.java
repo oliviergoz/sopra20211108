@@ -15,6 +15,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "users")
 @SequenceGenerator(name = "seqUser", sequenceName = "seq_users", initialValue = 100, allocationSize = 1)
@@ -23,6 +25,7 @@ public class User {
 	@GeneratedValue(generator = "seqUser", strategy = GenerationType.SEQUENCE)
 	private Long id;
 	@Column(name = "USERS_LOGIN", length = 255, unique = true, nullable = false)
+	@JsonView(JsonViews.Common.class)
 	private String login;
 	@Column(name = "USERS_PASSWORD", length = 255, nullable = false)
 	private String password;
