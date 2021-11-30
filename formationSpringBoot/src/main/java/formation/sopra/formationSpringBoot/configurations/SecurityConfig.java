@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
@@ -28,7 +29,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// par role=>hasRole hasAnyRole
 
 		// @formatter:off
-		http.antMatcher("/**")
+		
+		http
+			.antMatcher("/api/**")
+				.csrf().ignoringAntMatchers("/api/**")
+				.and()
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+				.and()
+				.authorizeRequests()
+					.antMatchers("/api/**").hasRole("USER")
+				.and()
+				.httpBasic()
+			.and()
+			.antMatcher("/**")
 				.authorizeRequests()
 					.antMatchers("/panier/valider","/panier/save").hasRole("USER")
 					.antMatchers("/client/**","/public/**","/panier/**").permitAll()
