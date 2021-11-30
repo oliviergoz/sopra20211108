@@ -22,6 +22,7 @@
 </head>
 <body>
 	<div class="container">
+		<jsp:include page="../logout.jsp"></jsp:include>
 		<h1>liste des produits</h1>
 		<table class="table">
 			<thead>
