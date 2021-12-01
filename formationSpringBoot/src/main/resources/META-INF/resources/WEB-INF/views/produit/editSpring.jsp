@@ -22,6 +22,7 @@
 </head>
 <body>
 	<div class="container">
+		<jsp:include page="../logout.jsp"></jsp:include>
 		<h1>edition</h1>
 		<form:form action="save" method="post" modelAttribute="produit">
 			<div class="form-group">

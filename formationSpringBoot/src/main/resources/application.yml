@@ -1,4 +1,6 @@
 server:
+  error:
+    include-message: always
   servlet:
     context-path: /eshop
 spring:
@@ -9,13 +11,34 @@ spring:
     username: postgres
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQL10Dialect
         format_sql: true
-        show_sql: true
+        show_sql: false
   mvc:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
+logging:
+  level:
+    root: ERROR
+    '[formation.sopra.formationSpringBoot.restcontroller.ClientRestController]': INFO    
+  file:
+    name: logs.log
+
+
+
+
+
+
+
+ 
+ #1 TRACE   
+ #2 DEBUG   
+ #3 INFO
+ #4 WARN
+ #5 ERROR
+ #6 FATAL
+ #7 OFF   

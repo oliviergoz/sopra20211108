@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,7 @@ import formation.sopra.formationSpringBoot.entities.Produit;
 import formation.sopra.formationSpringBoot.services.ClientService;
 import formation.sopra.formationSpringBoot.services.CommandeService;
 import formation.sopra.formationSpringBoot.services.ProduitService;
+import formation.sopra.formationSpringBoot.services.auth.CustomUserDetails;
 
 @Controller
 @RequestMapping("/panier")
@@ -74,15 +76,8 @@ public class PanierController {
 	}
 
 	@GetMapping("/valider")
-	public String valider(Model model) {
-		model.addAttribute("clients", clientService.allClient());
-		// model.addAttribute("client", new Client());
-		model.addAttribute("commande", new Commande());
-		return "panier/clients";
-	}
-
-	@PostMapping("/save")
-	public String enregistrer(@ModelAttribute("commande") Commande commande, HttpSession session, Model model) {
+	public String valider(@AuthenticationPrincipal CustomUserDetails cUD, Model model, HttpSession session) {
+		Commande commande = new Commande(cUD.getUser().getClient());
 		Map<Produit, Integer> panier = getPanier(session);
 		Set<LigneCommande> lc = new HashSet<LigneCommande>();
 		panier.forEach((produit, quantite) -> {
@@ -90,7 +85,21 @@ public class PanierController {
 		});
 		commande.setLignesCommandes(lc);
 		commandeService.create(commande);
-		session.invalidate();
+		session.removeAttribute("panier");
 		return "redirect:/panier";
+
 	}
+
+//	@PostMapping("/save")
+//	public String enregistrer(@ModelAttribute("commande") Commande commande, HttpSession session, Model model) {
+//		Map<Produit, Integer> panier = getPanier(session);
+//		Set<LigneCommande> lc = new HashSet<LigneCommande>();
+//		panier.forEach((produit, quantite) -> {
+//			lc.add(new LigneCommande(new LigneCommandePK(commande, produit), quantite));
+//		});
+//		commande.setLignesCommandes(lc);
+//		commandeService.create(commande);
+//		session.invalidate();
+//		return "redirect:/panier";
+//	}
 }

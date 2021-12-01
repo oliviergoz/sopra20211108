@@ -9,9 +9,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -50,9 +52,13 @@ public class Client {
 	@Version
 	@Column(name = "client_version")
 	private int version;
+	@OneToOne
+	@JoinColumn(name = "client_user_id")
+	@JsonView(JsonViews.ClientAvecUser.class)
+	private User user;
 
 	public String getInfos() {
-		return id+" "+prenom + " " + nom;
+		return id + " " + prenom + " " + nom;
 	}
 
 	public Client() {
@@ -102,6 +108,14 @@ public class Client {
 
 	public void setCivilite(Civilite civilite) {
 		this.civilite = civilite;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public int getVersion() {
