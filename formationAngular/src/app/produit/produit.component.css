@@ -1,0 +1,4 @@
+.prixNegatif {
+  background-color: red;
+  transition: background-color 2s;
+}
