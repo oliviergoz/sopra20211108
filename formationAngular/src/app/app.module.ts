@@ -11,9 +11,11 @@ import { AscTooltipComponent } from './asc-tooltip/asc-tooltip.component';
 import { OutputComponent } from './output/output.component';
 import { FormProduitComponent } from './produit/form-produit/form-produit.component';
 import { DisplayProduitComponent } from './produit/display-produit/display-produit.component';
+import { VoteDetailComponent } from './vote/vote-detail/vote-detail.component';
+import { VoteComponent } from './vote/vote/vote.component';
 
 @NgModule({
-  declarations: [AppComponent, FirstComponent, CouleurComponent, ProduitComponent, TestSelectorComponent, AscBoldElementComponent, AscTooltipComponent, OutputComponent, FormProduitComponent, DisplayProduitComponent],
+  declarations: [AppComponent, FirstComponent, CouleurComponent, ProduitComponent, TestSelectorComponent, AscBoldElementComponent, AscTooltipComponent, OutputComponent, FormProduitComponent, DisplayProduitComponent, VoteDetailComponent, VoteComponent],
   imports: [BrowserModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
