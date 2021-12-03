@@ -11,4 +11,8 @@ export class ProduitComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  getProduit(produit: Produit) {
+    this.produit = produit;
+  }
 }

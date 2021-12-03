@@ -1,0 +1,10 @@
+<p
+  *ngIf="produit.prix != 0 && produit.nom != ''"
+  [ngClass]="{ prixNegatif: produit.prix < 0 }"
+>
+  <asc-bold-element
+    prefix="Vocil le nom"
+    [text]="produit.nom"
+  ></asc-bold-element
+  >{{ produit.prix }}
+</p>
