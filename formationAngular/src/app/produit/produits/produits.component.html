@@ -1,0 +1,15 @@
+<input [(ngModel)]="chaine" />
+<table>
+  <tr>
+    <th>nom</th>
+    <th>prix</th>
+    <th>info</th>
+  </tr>
+  <tr *ngFor="let p of filtre()">
+    <td>{{ p.nom }}</td>
+    <td>{{ p.prix }}</td>
+    <td>{{ info(p) }}</td>
+  </tr>
+</table>
+<hr />
+<app-form-produit (produitEvent)="addProduit($event)"></app-form-produit>

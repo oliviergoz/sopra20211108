@@ -13,9 +13,10 @@ import { FormProduitComponent } from './produit/form-produit/form-produit.compon
 import { DisplayProduitComponent } from './produit/display-produit/display-produit.component';
 import { VoteDetailComponent } from './vote/vote-detail/vote-detail.component';
 import { VoteComponent } from './vote/vote/vote.component';
+import { ProduitsComponent } from './produit/produits/produits.component';
 
 @NgModule({
-  declarations: [AppComponent, FirstComponent, CouleurComponent, ProduitComponent, TestSelectorComponent, AscBoldElementComponent, AscTooltipComponent, OutputComponent, FormProduitComponent, DisplayProduitComponent, VoteDetailComponent, VoteComponent],
+  declarations: [AppComponent, FirstComponent, CouleurComponent, ProduitComponent, TestSelectorComponent, AscBoldElementComponent, AscTooltipComponent, OutputComponent, FormProduitComponent, DisplayProduitComponent, VoteDetailComponent, VoteComponent, ProduitsComponent],
   imports: [BrowserModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
