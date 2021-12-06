@@ -1,1 +1,17 @@
-<app-produit></app-produit>
+<nav>
+  <a [routerLink]="['/home']" routerLinkActive="active">home</a>
+  <a [routerLink]="['/produits']" routerLinkActive="active">produits</a>
+  <a [routerLink]="['/params']" routerLinkActive="active">params</a>
+  <a
+    [routerLink]="['/params']"
+    routerLinkActive="active"
+    [queryParams]="{ prenom: 'olivier', nom: 'gozlan' }"
+    >params avec parametre dans url</a
+  >
+  <a
+    [routerLink]="['/params', 'prenom', 'bob', 'nom', 'marley']"
+    routerLinkActive="active"
+    >params avec pathvariable</a
+  >
+</nav>
+<router-outlet></router-outlet>

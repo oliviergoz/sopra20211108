@@ -1,11 +1,2 @@
-<div>
-  <input [(ngModel)]="produit.nom" />
-  <input [(ngModel)]="produit.prix" />
-</div>
-
-<p
-  *ngIf="produit.prix != 0 && produit.nom != ''"
-  [ngClass]="{ prixNegatif: produit.prix < 0 }"
->
-  {{ produit.nom }} {{ produit.prix }}
-</p>
+<app-form-produit (produitEvent)="getProduit($event)"></app-form-produit>
+<app-display-produit [produit]="produit"></app-display-produit>
