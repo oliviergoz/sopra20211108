@@ -44,6 +44,11 @@ public class ProduitService {
 		ligneCommandeRepository.deleteByProduit(byId(id));
 		produitRepository.deleteById(id);
 	}
+	public void delete(Long id) {
+		Produit produit = byId(id);
+		ligneCommandeRepository.deleteByProduit(produit);
+		produitRepository.delete(produit);
+	}
 
 	public Produit byId(Long id) {
 		return produitRepository.findById(id).orElseThrow(ProduitException::new);
