@@ -27,36 +27,37 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// par role=>hasRole hasAnyRole
 
 		// @formatter:off
-		
-		http
-			.antMatcher("/api/**")
-				.csrf().ignoringAntMatchers("/api/**")
-				.and()
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-				.and()
-				.authorizeRequests()
-					.antMatchers(HttpMethod.POST,"/api/client").permitAll()
-					.antMatchers("/api/**").hasRole("USER")
-				.and()
-				.httpBasic()
-			.and()
-			.antMatcher("/**")
-				.authorizeRequests()
-					.antMatchers("/panier/valider","/panier/save").hasRole("USER")
-					.antMatchers("/client/**","/public/**","/panier/**").permitAll()
-					.antMatchers("/produit/**").hasRole("ADMIN")
-					.antMatchers("/commande/**").hasRole("ADMIN")
-					.anyRequest().authenticated()
-				.and()
-				.formLogin()
-					.loginPage("/login")
-					.defaultSuccessUrl("/auth/home")
-					.failureUrl("/login?error=")
-					.permitAll()
-				.and()
-				.logout()
-					.logoutUrl("/logout")
-					.logoutSuccessUrl("/public?logout=");
+		http.antMatcher("/**").authorizeRequests().anyRequest().permitAll();
+//		
+//		http
+//			.antMatcher("/api/**")
+//				.csrf().ignoringAntMatchers("/api/**")
+//				.and()
+//				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//				.and()
+//				.authorizeRequests()
+//					.antMatchers(HttpMethod.POST,"/api/client").permitAll()
+//					.antMatchers("/api/**").hasRole("USER")
+//				.and()
+//				.httpBasic()
+//			.and()
+//			.antMatcher("/**")
+//				.authorizeRequests()
+//					.antMatchers("/panier/valider","/panier/save").hasRole("USER")
+//					.antMatchers("/client/**","/public/**","/panier/**").permitAll()
+//					.antMatchers("/produit/**").hasRole("ADMIN")
+//					.antMatchers("/commande/**").hasRole("ADMIN")
+//					.anyRequest().authenticated()
+//				.and()
+//				.formLogin()
+//					.loginPage("/login")
+//					.defaultSuccessUrl("/auth/home")
+//					.failureUrl("/login?error=")
+//					.permitAll()
+//				.and()
+//				.logout()
+//					.logoutUrl("/logout")
+//					.logoutSuccessUrl("/public?logout=");
 		// @formatter:on
 	}
 

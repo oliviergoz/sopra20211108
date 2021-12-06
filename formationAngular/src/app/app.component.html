@@ -1,5 +1,18 @@
 <nav>
-  <a [routerLink]="['/home']" routerLinkActive="active">home</a>
+  <a
+    [routerLink]="[
+      { outlets: { primary: ['home'], autreOutlet: ['couleur'] } }
+    ]"
+    routerLinkActive="active"
+    >home</a
+  >
+  <a
+    [routerLink]="[
+       { outlets: { primary: ['produits'], autreOutlet: ['couleur'] }}
+    ]"
+    routerLinkActive="active"
+    >home</a
+  >
   <a [routerLink]="['/produits']" routerLinkActive="active">produits</a>
   <a [routerLink]="['/params']" routerLinkActive="active">params</a>
   <a
@@ -15,3 +28,4 @@
   >
 </nav>
 <router-outlet></router-outlet>
+<router-outlet name="autreOutlet"></router-outlet>
