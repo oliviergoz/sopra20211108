@@ -7,10 +7,17 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ProduitsComponent } from './produits/produits/produits.component';
 import { routes } from './routes';
+import { EditComponent } from './produits/edit/edit.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ProduitsComponent],
-  imports: [BrowserModule, RouterModule.forRoot(routes), HttpClientModule],
+  declarations: [AppComponent, HomeComponent, ProduitsComponent, EditComponent],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot(routes),
+    HttpClientModule,
+    FormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

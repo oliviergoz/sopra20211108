@@ -1,5 +1,25 @@
 <table class="table">
-  <tr *ngFor="let p of produits">
-    <td>{{ p }}</td>
+  <tr *ngFor="let p of produits | async">
+    <td>{{ p.id }}</td>
+    <td>{{ p.nom }}</td>
+    <td>{{ p.description }}</td>
+    <td>{{ p.prix }}</td>
+    <td>
+      <a
+        [routerLink]="['/produits', 'edit', p.id]"
+        routerLinkActive="active"
+        class="btn btn-outline-info"
+        >editer</a
+      >
+    </td>
+    <td>
+      <button (click)="delete(p.id)" class="btn btn-outline-danger">
+        supprimer
+      </button>
+    </td>
   </tr>
 </table>
+
+<a [routerLink]="['/produits', 'edit']" routerLinkActive="active" class="btn btn-link"
+  >ajouter un produit</a
+>

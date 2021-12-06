@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// par role=>hasRole hasAnyRole
 
 		// @formatter:off
-		http.antMatcher("/**").authorizeRequests().anyRequest().permitAll();
+		http.antMatcher("/**").csrf().disable().authorizeRequests().anyRequest().permitAll();
 //		
 //		http
 //			.antMatcher("/api/**")
