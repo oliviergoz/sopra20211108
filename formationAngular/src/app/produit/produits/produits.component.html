@@ -1,15 +1,24 @@
 <input [(ngModel)]="chaine" />
-<table>
+<table class="table">
   <tr>
     <th>nom</th>
     <th>prix</th>
     <th>info</th>
+    <th></th>
+    <th></th>
   </tr>
-  <tr *ngFor="let p of filtre()">
-    <td>{{ p.nom }}</td>
-    <td>{{ p.prix }}</td>
+  <tr *ngFor="let p of filtre(); let i = index">
+    <td>{{ p.nom | demo }}</td>
+    <td>{{ p.prix | currency: "EUR" }}</td>
     <td>{{ info(p) }}</td>
+    <td>
+      <a [routerLink]="['/produits', 'edit', i]" routerLinkActive="active"
+        >editer</a
+      >
+    </td>
+    <td><button (click)="delete(i)">supprimer</button></td>
   </tr>
 </table>
-<hr />
-<app-form-produit (produitEvent)="addProduit($event)"></app-form-produit>
+<a [routerLink]="['/produits', 'edit']" routerLinkActive="active"
+  >ajouter produit</a
+>

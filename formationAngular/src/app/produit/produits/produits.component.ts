@@ -1,3 +1,4 @@
+import { allProduits } from './../../produits';
 import { Produit } from './../../model/produit';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,10 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./produits.component.css'],
 })
 export class ProduitsComponent implements OnInit {
-  produits: Produit[] = [
-    new Produit('tele', 1000),
-    new Produit('telephone', 500),
-  ];
+  produits: Produit[] = allProduits;
 
   chaine: string = '';
 
@@ -35,5 +33,9 @@ export class ProduitsComponent implements OnInit {
     return this.produits.filter((p) => {
       return p.nom.indexOf(this.chaine) !== -1;
     });
+  }
+
+  delete(index:number){
+    this.produits.splice(index,1);
   }
 }

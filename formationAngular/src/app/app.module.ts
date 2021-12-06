@@ -20,6 +20,8 @@ import { TestDirective } from './directive/test.directive';
 import { ExempleCreationElementDirective } from './directive/exemple-creation-element.directive';
 import { HomeComponent } from './home/home.component';
 import { ParamsComponent } from './params/params.component';
+import { DemoPipe } from './pipes/demo.pipe';
+import { ProduitService } from './services/produit.service';
 
 
 @NgModule({
@@ -41,9 +43,10 @@ import { ParamsComponent } from './params/params.component';
     ExempleCreationElementDirective,
     HomeComponent,
     ParamsComponent,
+    DemoPipe,
   ],
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes)],
-  providers: [],
+  providers: [[{ provide: ProduitService, useClass: ProduitService }]],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
