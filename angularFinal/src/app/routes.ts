@@ -1,3 +1,4 @@
+import { LoginComponent } from './login/login.component';
 import { EditClientComponent } from './client/edit-client/edit-client.component';
 import { ClientComponent } from './client/client/client.component';
 import { EditComponent } from './produits/edit/edit.component';
@@ -13,5 +14,6 @@ export const routes: Routes = [
   { path: 'clients', component: ClientComponent },
   { path: 'clients/edit/:client', component: EditClientComponent },
   { path: 'clients/edit', component: EditClientComponent },
+  { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

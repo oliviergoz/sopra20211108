@@ -11,9 +11,10 @@ import { EditComponent } from './produits/edit/edit.component';
 import { FormsModule } from '@angular/forms';
 import { ClientComponent } from './client/client/client.component';
 import { EditClientComponent } from './client/edit-client/edit-client.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ProduitsComponent, EditComponent, ClientComponent, EditClientComponent],
+  declarations: [AppComponent, HomeComponent, ProduitsComponent, EditComponent, ClientComponent, EditClientComponent, LoginComponent],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),

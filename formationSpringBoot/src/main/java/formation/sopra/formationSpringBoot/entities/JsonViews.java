@@ -20,4 +20,8 @@ public class JsonViews {
 	public static class ClientAvecUser extends Common {
 
 	}
+	
+	public static class UserWithClient extends Common{
+		
+	}
 }

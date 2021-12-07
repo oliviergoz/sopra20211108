@@ -12,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 export class EditClientComponent implements OnInit {
   client: Client = new Client();
   password: string = '';
+  civilites = Civilite;
 
   constructor(
     private activatedRoute: ActivatedRoute,

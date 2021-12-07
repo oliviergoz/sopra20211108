@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import formation.sopra.formationSpringBoot.entities.Commande;
 import formation.sopra.formationSpringBoot.entities.JsonViews;
 import formation.sopra.formationSpringBoot.services.CommandeService;
+import formation.sopra.formationSpringBoot.services.auth.CustomUserDetails;
 
 @RestController
 @RequestMapping("/api/commande")
@@ -40,10 +42,11 @@ public class CommandeRestController {
 
 	@PostMapping("")
 	@JsonView(JsonViews.CommandeAvecLigneCommande.class)
-	public Commande create(@Valid @RequestBody Commande commande, BindingResult br) {
+	public Commande create(@Valid @RequestBody Commande commande, BindingResult br,@AuthenticationPrincipal CustomUserDetails cUD) {
 		commande.getLignesCommandes().forEach(lc -> {
 			lc.getId().setCommande(commande);
 		});
+		commande.setClient(cUD.getUser().getClient());
 		return commandeService.create(commande);
 	}
 }
