@@ -13,7 +13,7 @@ export class ClientService {
 
   private get httpHeaders(): HttpHeaders {
     return new HttpHeaders({
-      Authorization: 'Basic ' + btoa('test:test'),
+      Authorization: 'Basic ' + sessionStorage.getItem('token'),
       'Content-Type': 'application/json',
     });
   }

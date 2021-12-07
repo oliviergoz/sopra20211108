@@ -1,13 +1,27 @@
 <nav>
   <a routerLink="/home" routerLinkActive="active" class="btn btn-link">home</a>
-  <a routerLink="/login" routerLinkActive="active" class="btn btn-link"
+  <a
+    *ngIf="!logged"
+    routerLink="/login"
+    routerLinkActive="active"
+    class="btn btn-link"
     >login</a
   >
-  <a routerLink="/produits" routerLinkActive="active" class="btn btn-link"
+  <a
+    *ngIf="logged"
+    routerLink="/produits"
+    routerLinkActive="active"
+    class="btn btn-link"
     >produits</a
   >
-  <a routerLink="/clients" routerLinkActive="active" class="btn btn-link"
+  <a
+    *ngIf="logged"
+    routerLink="/clients"
+    routerLinkActive="active"
+    class="btn btn-link"
     >clients</a
   >
+  <a [routerLink]="" routerLinkActive="active" class="btn btn-link">commander</a>
+  <button *ngIf="logged" (click)="logout()" class="btn btn-link">logout</button>
 </nav>
 <router-outlet></router-outlet>
