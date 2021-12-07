@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +28,7 @@ import formation.sopra.formationSpringBoot.services.ClientService;
 
 @RestController
 @RequestMapping("/api/client")
+@CrossOrigin(origins = "*")
 public class ClientRestController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ClientRestController.class);
@@ -51,7 +53,7 @@ public class ClientRestController {
 	@JsonView(JsonViews.ClientAvecUser.class)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Client create(@Valid @RequestBody Client client, BindingResult br) {
-		return clientService.save(client);
+		return clientService.create(client);
 	}
 
 	@PutMapping("/{id}")
@@ -61,7 +63,7 @@ public class ClientRestController {
 		clientEnBase.setCivilite(client.getCivilite());
 		clientEnBase.setNom(client.getNom());
 		clientEnBase.setPrenom(client.getPrenom());
-		return clientService.save(clientEnBase);
+		return clientService.update(clientEnBase);
 	}
 
 	@DeleteMapping("/{id}")

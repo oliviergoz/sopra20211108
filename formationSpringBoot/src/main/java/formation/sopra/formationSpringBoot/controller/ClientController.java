@@ -58,7 +58,7 @@ public class ClientController {
 		if (br.hasErrors()) {
 			return goEdit(client);
 		}
-		clientService.save(client);
+		clientService.create(client);
 		return new ModelAndView("redirect:/client");
 	}
 }

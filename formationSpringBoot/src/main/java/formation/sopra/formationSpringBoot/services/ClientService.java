@@ -35,20 +35,26 @@ public class ClientService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	public Client save(Client client) {
+	public Client create(Client client) {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		Set<ConstraintViolation<Client>> violations = validator.validate(client);
 		if (violations.isEmpty()) {
+
 			User user = client.getUser();
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			user.setRoles(Arrays.asList(Role.ROLE_USER));
 			user.setEnable(true);
 			userRepository.save(user);
+
 			client = clientRepository.save(client);
 			return client;
 		} else {
 			throw new ClientException();
 		}
+	}
+	
+	public Client update(Client client) {
+		return clientRepository.save(client);
 	}
 
 //	public void delete(Client client) {

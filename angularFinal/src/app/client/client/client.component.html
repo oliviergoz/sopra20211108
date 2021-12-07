@@ -1,0 +1,30 @@
+<table class="table">
+  <tbody>
+    <tr *ngFor="let client of clients">
+      <td>{{ client.id }}</td>
+      <td>{{ client.prenom }}</td>
+      <td>{{ client.nom }}</td>
+      <td>{{ client.civilite }}</td>
+      <td>{{ client.login }}</td>
+      <td>
+        <a
+          [routerLink]="['/clients', 'edit', client.id]"
+          routerLinkActive="active"
+          >editer</a
+        >
+      </td>
+      <td>
+        <button (click)="delete(client.id)" class="btn btn-outline-danger">
+          supprimer
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<a
+  [routerLink]="['/clients', 'edit']"
+  routerLinkActive="active"
+  class="btn btn-link"
+  >creation client</a
+>
