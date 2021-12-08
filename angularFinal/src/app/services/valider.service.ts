@@ -17,7 +17,10 @@ export class ValiderService {
     const lignesCommandes: any[] = [];
     panier.forEach((value: number, key: string) => {
       let produit = JSON.parse(key);
-      let o = { produit: produit, quantite: value };
+      let o = {
+        id: { produit: produit },
+        quantite: value,
+      };
       lignesCommandes.push(o);
     });
     let commande = {

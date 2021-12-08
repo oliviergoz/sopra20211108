@@ -12,6 +12,7 @@ export class ValiderComponent implements OnInit {
   ngOnInit(): void {
     this.validerService.enregistrer().subscribe((ok) => {
       console.log(ok);
+      localStorage.removeItem('panier');
     });
   }
 }
