@@ -36,6 +36,12 @@ export class ClientService {
     });
   }
 
+  public checkLogin(login: string): Observable<boolean> {
+    return this.http.get<boolean>(
+      'http://localhost:8080/eshop/api/user/' + login
+    );
+  }
+
   public insert(client: Client, password: string): Observable<Client> {
     const o = {
       prenom: client.prenom,
@@ -43,9 +49,7 @@ export class ClientService {
       civilite: client.civilite,
       user: { login: client.login, password: password },
     };
-    return this.http.post<Client>(ClientService.URL, o, {
-      headers: this.httpHeaders,
-    });
+    return this.http.post<Client>(ClientService.URL, o);
   }
 
   public update(client: Client): Observable<Client> {

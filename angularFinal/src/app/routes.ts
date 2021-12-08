@@ -1,3 +1,4 @@
+import { InscriptionComponent } from './client/inscription/inscription.component';
 import { FormulairePiloteParCodeComponent } from './formulaire/formulaire-pilote-par-code/formulaire-pilote-par-code.component';
 import { FormulairePiloteParTemplateComponent } from './formulaire/formulaire-pilote-par-template/formulaire-pilote-par-template.component';
 import { RecapComponent } from './panier/recap/recap.component';
@@ -14,6 +15,7 @@ import { ValiderComponent } from './panier/valider/valider.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'inscription', component: InscriptionComponent },
   { path: 'valider', component: ValiderComponent, canActivate: [AuthService] },
   { path: 'recap', component: RecapComponent },
   { path: 'panier', component: PanierComponent },

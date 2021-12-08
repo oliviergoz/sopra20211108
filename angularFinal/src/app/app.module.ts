@@ -17,6 +17,7 @@ import { RecapComponent } from './panier/recap/recap.component';
 import { ValiderComponent } from './panier/valider/valider.component';
 import { FormulairePiloteParTemplateComponent } from './formulaire/formulaire-pilote-par-template/formulaire-pilote-par-template.component';
 import { FormulairePiloteParCodeComponent } from './formulaire/formulaire-pilote-par-code/formulaire-pilote-par-code.component';
+import { InscriptionComponent } from './client/inscription/inscription.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { FormulairePiloteParCodeComponent } from './formulaire/formulaire-pilote
     ValiderComponent,
     FormulairePiloteParTemplateComponent,
     FormulairePiloteParCodeComponent,
+    InscriptionComponent,
   ],
   imports: [
     BrowserModule,
