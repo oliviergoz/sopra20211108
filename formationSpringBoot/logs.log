@@ -266,3 +266,65 @@ java.lang.NullPointerException: Cannot invoke "formation.sopra.formationSpringBo
 	at java.base/java.lang.Thread.run(Thread.java:832) ~[na:na]
 
 2021-12-08 09:54:34.584  INFO 23942 --- [http-nio-8080-exec-5] f.s.f.r.ClientRestController             : execution restClient all()
+2021-12-08 14:15:53.914  INFO 23942 --- [RMI TCP Connection(339)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-12-08 14:15:55.844  INFO 23942 --- [RMI TCP Connection(339)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-12-08 14:15:55.926  INFO 23942 --- [RMI TCP Connection(339)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-12-08 14:15:55.968  INFO 23942 --- [RMI TCP Connection(339)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-12-08 14:16:02.843  INFO 35057 --- [main] f.s.f.FormationSpringBootApplication     : Starting FormationSpringBootApplication using Java 15.0.1 on macOlivier with PID 35057 (/Users/olivier/Documents/sopra20210928.nosync/sopra20211108/formationSpringBoot/target/classes started by olivier in /Users/olivier/Documents/sopra20210928.nosync/sopra20211108/formationSpringBoot)
+2021-12-08 14:16:02.848  INFO 35057 --- [main] f.s.f.FormationSpringBootApplication     : No active profile set, falling back to default profiles: default
+2021-12-08 14:16:06.046  INFO 35057 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-08 14:16:06.698  INFO 35057 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 597 ms. Found 5 JPA repository interfaces.
+2021-12-08 14:16:10.082  INFO 35057 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-12-08 14:16:10.105  INFO 35057 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-08 14:16:10.105  INFO 35057 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-12-08 14:16:10.956  INFO 35057 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021-12-08 14:16:11.018  INFO 35057 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/eshop]  : Initializing Spring embedded WebApplicationContext
+2021-12-08 14:16:11.020  INFO 35057 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 7840 ms
+2021-12-08 14:16:12.022  INFO 35057 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-08 14:16:12.243  INFO 35057 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.1.Final
+2021-12-08 14:16:12.987  INFO 35057 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-12-08 14:16:13.586  INFO 35057 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-12-08 14:16:14.037  INFO 35057 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-12-08 14:16:14.115  INFO 35057 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2021-12-08 14:16:16.999  INFO 35057 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-08 14:16:17.210  INFO 35057 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-08 14:16:17.319  WARN 35057 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-08 14:16:22.078  INFO 35057 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/images/**'] with []
+2021-12-08 14:16:22.079  INFO 35057 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/css/**'] with []
+2021-12-08 14:16:22.209  INFO 35057 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/**'] with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@30259c61, org.springframework.security.web.context.SecurityContextPersistenceFilter@1c76b2fe, org.springframework.security.web.header.HeaderWriterFilter@401d83ce, org.springframework.security.web.csrf.CsrfFilter@37922937, org.springframework.security.web.authentication.logout.LogoutFilter@212be8c, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5dc8448b, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@26361572, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@47629063, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@281028ce, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@33d08a24, org.springframework.security.web.session.SessionManagementFilter@5abc488d, org.springframework.security.web.access.ExceptionTranslationFilter@5466a819, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5fee3c9c]
+2021-12-08 14:16:22.898  INFO 35057 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/eshop'
+2021-12-08 14:16:22.948  INFO 35057 --- [main] f.s.f.FormationSpringBootApplication     : Started FormationSpringBootApplication in 21.114 seconds (JVM running for 24.248)
+2021-12-08 14:16:28.207  INFO 35057 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/eshop]  : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-12-08 14:16:28.208  INFO 35057 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-12-08 14:16:28.211  INFO 35057 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2021-12-08 14:38:20.644  INFO 35057 --- [RMI TCP Connection(36)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-12-08 14:38:21.767  INFO 35057 --- [RMI TCP Connection(36)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-12-08 14:38:21.930  INFO 35057 --- [RMI TCP Connection(36)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-12-08 14:38:21.942  INFO 35057 --- [RMI TCP Connection(36)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-12-08 14:38:35.320  INFO 36471 --- [main] f.s.f.FormationSpringBootApplication     : Starting FormationSpringBootApplication using Java 15.0.1 on macOlivier with PID 36471 (/Users/olivier/Documents/sopra20210928.nosync/sopra20211108/formationSpringBoot/target/classes started by olivier in /Users/olivier/Documents/sopra20210928.nosync/sopra20211108/formationSpringBoot)
+2021-12-08 14:38:35.327  INFO 36471 --- [main] f.s.f.FormationSpringBootApplication     : No active profile set, falling back to default profiles: default
+2021-12-08 14:38:38.331  INFO 36471 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-08 14:38:38.607  INFO 36471 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 231 ms. Found 5 JPA repository interfaces.
+2021-12-08 14:38:40.887  INFO 36471 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-12-08 14:38:40.913  INFO 36471 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-08 14:38:40.914  INFO 36471 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-12-08 14:38:42.248  INFO 36471 --- [main] org.apache.jasper.servlet.TldScanner     : At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2021-12-08 14:38:42.291  INFO 36471 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/eshop]  : Initializing Spring embedded WebApplicationContext
+2021-12-08 14:38:42.291  INFO 36471 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6786 ms
+2021-12-08 14:38:43.217  INFO 36471 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-08 14:38:43.768  INFO 36471 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.1.Final
+2021-12-08 14:38:44.399  INFO 36471 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-12-08 14:38:44.745  INFO 36471 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-12-08 14:38:45.020  INFO 36471 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-12-08 14:38:45.069  INFO 36471 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2021-12-08 14:38:50.655  INFO 36471 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-08 14:38:51.179  INFO 36471 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-08 14:38:51.392  WARN 36471 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-08 14:38:55.465  INFO 36471 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/images/**'] with []
+2021-12-08 14:38:55.465  INFO 36471 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/css/**'] with []
+2021-12-08 14:38:55.759  INFO 36471 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/**'] with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5af7e2f, org.springframework.security.web.context.SecurityContextPersistenceFilter@11a29c0, org.springframework.security.web.header.HeaderWriterFilter@6e5a77ef, org.springframework.security.web.csrf.CsrfFilter@30cb489a, org.springframework.security.web.authentication.logout.LogoutFilter@69c263f8, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@80b70fd, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@10b7b5f0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@77185a2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@212be8c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2df24f19, org.springframework.security.web.session.SessionManagementFilter@13f17b8f, org.springframework.security.web.access.ExceptionTranslationFilter@121c1a08, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@26723525]
+2021-12-08 14:38:56.436  INFO 36471 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/eshop'
+2021-12-08 14:38:56.533  INFO 36471 --- [main] f.s.f.FormationSpringBootApplication     : Started FormationSpringBootApplication in 23.004 seconds (JVM running for 27.494)
+2021-12-08 14:39:06.515  INFO 36471 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/eshop]  : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-12-08 14:39:06.521  INFO 36471 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-12-08 14:39:06.526  INFO 36471 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms

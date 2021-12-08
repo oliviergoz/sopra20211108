@@ -28,6 +28,7 @@
       class="alert alert-danger"
     >
       nom obligatoire
+      {{ monForm.controls.nomControl.hasError("checkDataInList") }}
     </div>
   </div>
   <div formGroupName="group1">
@@ -48,6 +49,10 @@
       />
     </div>
   </div>
-
+  form: {{ monForm.invalid }}<br />
+  prenom:{{ monForm.controls.prenomControl.invalid }} <br>nom:{{
+    monForm.controls.nomControl.invalid
+  }}<br>
+  group:{{ monForm.controls.group1.invalid }}
   <div><button type="submit" [disabled]="monForm.invalid">valider</button></div>
 </form>
