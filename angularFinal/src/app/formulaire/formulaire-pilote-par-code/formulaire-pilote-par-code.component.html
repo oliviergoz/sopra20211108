@@ -1,0 +1,53 @@
+<form (ngSubmit)="submit()" [formGroup]="monForm">
+  <div class="form-group">
+    <label>prenom:</label>
+    <input
+      class="form-control"
+      name="prenomControl"
+      [formControl]="prenomControl"
+    />
+    <div
+      *ngIf="prenomControl.dirty && prenomControl.invalid"
+      class="alert alert-danger"
+    >
+      prenom obligatoire
+    </div>
+  </div>
+  <div class="form-group">
+    <label>nom:</label>
+    <input
+      class="form-control"
+      name="nomControl"
+      formControlName="nomControl"
+    />
+    <div
+      *ngIf="
+        monForm.controls.nomControl.dirty &&
+        monForm.controls['nomControl'].invalid
+      "
+      class="alert alert-danger"
+    >
+      nom obligatoire
+    </div>
+  </div>
+  <div formGroupName="group1">
+    <div class="form-group">
+      <label>texte1:</label>
+      <input
+        class="form-control"
+        name="texte1Control"
+        formControlName="texte1Control"
+      />
+    </div>
+    <div class="form-group">
+      <label>texte2:</label>
+      <input
+        class="form-control"
+        name="texte2Control"
+        formControlName="texte2Control"
+      />
+    </div>
+  </div>
+
+  <div><button type="submit" [disabled]="monForm.invalid">valider</button></div>
+</form>

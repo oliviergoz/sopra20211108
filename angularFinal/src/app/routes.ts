@@ -1,3 +1,5 @@
+import { FormulairePiloteParCodeComponent } from './formulaire/formulaire-pilote-par-code/formulaire-pilote-par-code.component';
+import { FormulairePiloteParTemplateComponent } from './formulaire/formulaire-pilote-par-template/formulaire-pilote-par-template.component';
 import { RecapComponent } from './panier/recap/recap.component';
 import { PanierComponent } from './panier/panier/panier.component';
 import { AuthService } from './services/auth.service';
@@ -15,6 +17,8 @@ export const routes: Routes = [
   { path: 'valider', component: ValiderComponent, canActivate: [AuthService] },
   { path: 'recap', component: RecapComponent },
   { path: 'panier', component: PanierComponent },
+  { path: 'formCode', component: FormulairePiloteParCodeComponent },
+  { path: 'formTemplate', component: FormulairePiloteParTemplateComponent },
   {
     path: 'produits',
     component: ProduitsComponent,

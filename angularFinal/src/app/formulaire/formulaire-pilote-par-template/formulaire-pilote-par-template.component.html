@@ -1,0 +1,35 @@
+<form (ngSubmit)="valider(monForm)" #monForm="ngForm">
+  <div class="form-group">
+    <label>prenom:</label>
+    <input
+      class="form-control"
+      name="prenomControl"
+      [(ngModel)]="prenom"
+      #prenomControl="ngModel"
+      required
+    />
+    <div
+      *ngIf="prenomControl.dirty && prenomControl.invalid"
+      class="alert alert-danger"
+    >
+      prenom obligatoire
+    </div>
+  </div>
+  <div class="form-group">
+    <label>nom:</label>
+    <input
+      class="form-control"
+      name="nomControl"
+      [(ngModel)]="nom"
+      #nomControl="ngModel"
+      required
+    />
+  </div>
+  <div
+    *ngIf="nomControl.dirty && nomControl.invalid"
+    class="alert alert-danger"
+  >
+    nom obligatoire
+  </div>
+  <div><button type="submit" [disabled]="monForm.invalid">valider</button></div>
+</form>

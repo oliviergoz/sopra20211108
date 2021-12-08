@@ -8,21 +8,37 @@ import { HomeComponent } from './home/home.component';
 import { ProduitsComponent } from './produits/produits/produits.component';
 import { routes } from './routes';
 import { EditComponent } from './produits/edit/edit.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClientComponent } from './client/client/client.component';
 import { EditClientComponent } from './client/edit-client/edit-client.component';
 import { LoginComponent } from './login/login.component';
 import { PanierComponent } from './panier/panier/panier.component';
 import { RecapComponent } from './panier/recap/recap.component';
 import { ValiderComponent } from './panier/valider/valider.component';
+import { FormulairePiloteParTemplateComponent } from './formulaire/formulaire-pilote-par-template/formulaire-pilote-par-template.component';
+import { FormulairePiloteParCodeComponent } from './formulaire/formulaire-pilote-par-code/formulaire-pilote-par-code.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ProduitsComponent, EditComponent, ClientComponent, EditClientComponent, LoginComponent, PanierComponent, RecapComponent, ValiderComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    ProduitsComponent,
+    EditComponent,
+    ClientComponent,
+    EditClientComponent,
+    LoginComponent,
+    PanierComponent,
+    RecapComponent,
+    ValiderComponent,
+    FormulairePiloteParTemplateComponent,
+    FormulairePiloteParCodeComponent,
+  ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
