@@ -1,0 +1,15 @@
+<table class="table">
+  <tr *ngFor="let p of produits">
+    <td>{{ p.nom }}</td>
+    <td>{{ p.prix }}</td>
+    <td>{{ getQuantite(p) }}</td>
+    <td>{{ getPrix(p) }}</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td>total panier</td>
+    <td>{{ getTotal() }}</td>
+  </tr>
+</table>
+<button (click)="goValider()" class="btn btn-link">enregistrer</button>

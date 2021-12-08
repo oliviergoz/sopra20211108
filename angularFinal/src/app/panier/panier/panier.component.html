@@ -1,0 +1,20 @@
+<table class="table">
+  <tr *ngFor="let p of produits; let index = index">
+    <td>{{ p.id }}</td>
+    <td>{{ p.nom }}</td>
+    <td>{{ p.description }}</td>
+    <td>{{ p.prix }}</td>
+    <td><button (click)="addPanier(index)">ajouter au panier</button></td>
+    <td>
+      <span *ngIf="getQuantite(index) > 0">{{ getQuantite(index) }}</span>
+    </td>
+    <td>
+      <button *ngIf="getQuantite(index) > 0" (click)="remove(p)">
+        retirer un article
+      </button>
+    </td>
+  </tr>
+</table>
+<a [routerLink]="['/recap']" routerLinkActive="active" class="btn btn-link"
+  >recap panier</a
+>

@@ -69,4 +69,6 @@ export class Produit {
   public set prix(value: number | undefined) {
     this._prix = value;
   }
+
+  
 }

@@ -12,9 +12,12 @@ import { FormsModule } from '@angular/forms';
 import { ClientComponent } from './client/client/client.component';
 import { EditClientComponent } from './client/edit-client/edit-client.component';
 import { LoginComponent } from './login/login.component';
+import { PanierComponent } from './panier/panier/panier.component';
+import { RecapComponent } from './panier/recap/recap.component';
+import { ValiderComponent } from './panier/valider/valider.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ProduitsComponent, EditComponent, ClientComponent, EditClientComponent, LoginComponent],
+  declarations: [AppComponent, HomeComponent, ProduitsComponent, EditComponent, ClientComponent, EditClientComponent, LoginComponent, PanierComponent, RecapComponent, ValiderComponent],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),

@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,10 +11,24 @@ export class LoginComponent implements OnInit {
   login: string = '';
   password: string = '';
   showMessage = false;
+  message = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private activatedroute: ActivatedRoute
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.activatedroute.queryParams.subscribe((params) => {
+      if (!!params.error) {
+        if (params.error) {
+          this.message = 'authentification requise';
+          this.showMessage = true;
+        }
+      }
+    });
+  }
 
   check() {
     this.authService.auth(this.login, this.password).subscribe(
@@ -27,9 +41,15 @@ export class LoginComponent implements OnInit {
         } else {
           sessionStorage.setItem('role', 'admin');
         }
-        this.router.navigate(['/home']);
+        if (!!localStorage.getItem('valider')) {
+          localStorage.removeItem('valider');
+          this.router.navigate(['/valider']);
+        } else {
+          this.router.navigate(['/home']);
+        }
       },
       (error) => {
+        this.message = "erreur d'authentification";
         this.showMessage = true;
       }
     );

@@ -1,3 +1,5 @@
+import { RecapComponent } from './panier/recap/recap.component';
+import { PanierComponent } from './panier/panier/panier.component';
 import { AuthService } from './services/auth.service';
 import { LoginComponent } from './login/login.component';
 import { EditClientComponent } from './client/edit-client/edit-client.component';
@@ -6,9 +8,13 @@ import { EditComponent } from './produits/edit/edit.component';
 import { ProduitsComponent } from './produits/produits/produits.component';
 import { HomeComponent } from './home/home.component';
 import { Routes } from '@angular/router';
+import { ValiderComponent } from './panier/valider/valider.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'valider', component: ValiderComponent, canActivate: [AuthService] },
+  { path: 'recap', component: RecapComponent },
+  { path: 'panier', component: PanierComponent },
   {
     path: 'produits',
     component: ProduitsComponent,

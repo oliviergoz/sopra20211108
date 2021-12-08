@@ -19,7 +19,7 @@ export class ProduitService {
   }
 
   public allProduits(): Observable<Produit[]> {
-    return this.http.get<Produit[]>(this.url, { headers: this.httpHeaders });
+    return this.http.get<Produit[]>(this.url);
   }
 
   public delete(id: number): Observable<any> {
